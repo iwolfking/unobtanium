@@ -1,0 +1,30 @@
+{
+  "OUTPUTS": {
+    "the_vault:jewel": {
+      "mainOutput": {
+        "chance": 1.0,
+        "stack": {
+          "item": "the_vault:silver_scrap"
+        },
+        "minCount": 5,
+        "maxCount": 8
+      },
+      "extraOutput1": {
+        "chance": 0.5,
+        "stack": {
+          "item": "the_vault:gemstone"
+        },
+        "minCount": 1,
+        "maxCount": 1
+      },
+      "extraOutput2": {
+        "chance": 1.0,
+        "stack": {
+          "item": "minecraft:air"
+        },
+        "minCount": 0,
+        "maxCount": 0
+      }
+    }
+  }
+}

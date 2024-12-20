@@ -1,0 +1,415 @@
+{
+  "tasks": [
+    {
+      "type": "chest",
+      "target": "the_vault:wooden_chest",
+      "probability": 0.5,
+      "icon": "the_vault:textures/gui/scavenger/wooden_chest.png",
+      "entries": {
+        "the_vault:scavenger_ripped_page": {
+          "weight": 8,
+          "multiplier": 2.0,
+          "color": 5353215
+        },
+        "the_vault:scavenger_old_book": {
+          "weight": 4,
+          "multiplier": 1.0,
+          "color": 16771072
+        },
+        "the_vault:scavenger_pottery_shard": {
+          "weight": 2,
+          "multiplier": 0.8,
+          "color": 16711935
+        },
+        "the_vault:scavenger_spider_webbing_spool": {
+          "weight": 1,
+          "multiplier": 0.25,
+          "color": 7012096
+        }
+      }
+    },
+    {
+      "type": "chest",
+      "target": "@the_vault:gilded",
+      "probability": 0.5,
+      "icon": "the_vault:textures/gui/scavenger/gilded_chest.png",
+      "entries": {
+        "the_vault:scavenger_red_scroll": {
+          "weight": 8,
+          "multiplier": 0.5,
+          "color": 5353215
+        },
+        "the_vault:scavenger_spider_soul_charm": {
+          "weight": 4,
+          "multiplier": 0.3,
+          "color": 16771072
+        },
+        "the_vault:scavenger_goblet": {
+          "weight": 2,
+          "multiplier": 0.15,
+          "color": 16711935
+        },
+        "the_vault:scavenger_earrings": {
+          "weight": 1,
+          "multiplier": 0.1,
+          "color": 7012096
+        }
+      }
+    },
+    {
+      "type": "chest",
+      "target": "@the_vault:ornate",
+      "probability": 0.5,
+      "icon": "the_vault:textures/gui/scavenger/ornate_chest.png",
+      "entries": {
+        "the_vault:scavenger_empty_jar": {
+          "weight": 8,
+          "multiplier": 0.5,
+          "color": 5353215
+        },
+        "the_vault:scavenger_sack": {
+          "weight": 4,
+          "multiplier": 0.3,
+          "color": 16771072
+        },
+        "the_vault:scavenger_saddle_bag": {
+          "weight": 2,
+          "multiplier": 0.15,
+          "color": 16711935
+        },
+        "the_vault:scavenger_wizard_wand": {
+          "weight": 1,
+          "multiplier": 0.1,
+          "color": 7012096
+        }
+      }
+    },
+    {
+      "type": "chest",
+      "target": "@the_vault:living",
+      "probability": 0.5,
+      "icon": "the_vault:textures/gui/scavenger/living_chest.png",
+      "entries": {
+        "the_vault:scavenger_drowned_hide": {
+          "weight": 8,
+          "multiplier": 0.5,
+          "color": 5353215
+        },
+        "the_vault:scavenger_zombie_arm": {
+          "weight": 4,
+          "multiplier": 0.3,
+          "color": 16771072
+        },
+        "the_vault:scavenger_zombie_brain": {
+          "weight": 2,
+          "multiplier": 0.15,
+          "color": 16711935
+        },
+        "the_vault:scavenger_creeper_eye": {
+          "weight": 1,
+          "multiplier": 0.1,
+          "color": 7012096
+        }
+      }
+    },
+    {
+      "type": "coin_stacks",
+      "target": "the_vault:coin_pile",
+      "probability": 0.25,
+      "icon": "the_vault:textures/gui/scavenger/coin_stacks.png",
+      "entries": {
+        "the_vault:scavenger_zombie_blood_vial": {
+          "weight": 8,
+          "multiplier": 0.7,
+          "color": 5353215
+        },
+        "the_vault:scavenger_cracked_script": {
+          "weight": 4,
+          "multiplier": 0.5,
+          "color": 16771072
+        },
+        "the_vault:scavenger_green_bangle": {
+          "weight": 2,
+          "multiplier": 0.3,
+          "color": 16711935
+        },
+        "the_vault:scavenger_cracked_pearl": {
+          "weight": 1,
+          "multiplier": 0.15,
+          "color": 7012096
+        }
+      }
+    },
+    {
+      "type": "ore",
+      "probability": 0.3,
+      "icon": "the_vault:textures/gui/scavenger/vault_ore.png",
+      "entries": {
+        "the_vault:scavenger_skeleton_bone_shard": {
+          "weight": 8,
+          "multiplier": 0.7,
+          "color": 5353215
+        },
+        "the_vault:scavenger_skeleton_wishbone": {
+          "weight": 4,
+          "multiplier": 0.5,
+          "color": 16771072
+        },
+        "the_vault:scavenger_skeleton_ribcage": {
+          "weight": 2,
+          "multiplier": 0.3,
+          "color": 16711935
+        },
+        "the_vault:scavenger_skeleton_skull": {
+          "weight": 1,
+          "multiplier": 0.15,
+          "color": 7012096
+        }
+      }
+    },
+    {
+      "type": "mob",
+      "probability": 0.3,
+      "icon": "the_vault:textures/gui/scavenger/mob.png",
+      "color": 16777215,
+      "entries": {
+        "the_vault:scavenger_mob_black": {
+          "multiplier": 0.8,
+          "mobs": [
+            "minecraft:skeleton",
+            "the_vault:t1_skeleton",
+            "the_vault:t2_skeleton",
+            "the_vault:t3_skeleton",
+            "minecraft:creeper",
+            "the_vault:t1_creeper",
+            "the_vault:t2_creeper",
+            "the_vault:t3_creeper",
+            "minecraft:stray",
+            "the_vault:t1_stray",
+            "the_vault:t2_stray",
+            "the_vault:t3_stray",
+            "minecraft:wither_skeleton",
+            "the_vault:t1_wither_skeleton",
+            "the_vault:t2_wither_skeleton",
+            "the_vault:t3_wither_skeleton",
+            "the_vault:skeleton_pirate_t0",
+            "the_vault:skeleton_pirate_t1",
+            "the_vault:skeleton_pirate_t2",
+            "the_vault:skeleton_pirate_t3",
+            "the_vault:skeleton_pirate_t4",
+            "the_vault:skeleton_pirate_t5",
+            "rottencreatures:mummy",
+            "rottencreatures:burned",
+            "rottencreatures:glacial_hunter",
+            "rottencreatures:swampy",
+            "minecraft:vindicator",
+            "minecraft:ravager",
+            "minecraft:pillager",
+            "the_vault:shiver",
+            "the_vault:deathcap",
+            "the_vault:mummy_t0",
+            "the_vault:mummy_t1",
+            "the_vault:mummy_t2",
+            "the_vault:deep_dark_skeleton",
+            "the_vault:deep_dark_horror",
+            "the_vault:deep_dark_silverfish",
+            "rottencreatures:dead_beard",
+            "ecologics:coconut_crab",
+            "quark:wraith",
+            "minecraft:polar_bear",
+            "minecraft:slime",
+            "the_vault:vault_spider",
+            "minecraft:shulker",
+            "minecraft:piglin_brute",
+            "minecraft:blaze",
+            "minecraft:magma_cube",
+            "auxiliaryblocks:snowdood",
+            "alexsmobs:rocky_roller",
+            "alexsmobs:soul_vulture",
+            "alexsmobs:alligator_snapping_turtle",
+            "alexsmobs:tusklin",
+            "alexsmobs:mantis_shrimp",
+            "alexsmobs:bunfungus",
+            "quark:foxhound",
+            "the_vault:winter_wolf",
+            "the_vault:vault_blue_gummy_soldier",
+            "the_vault:blood_skeleton_t0",
+            "the_vault:blood_skeleton_t1",
+            "the_vault:blood_skeleton_t2",
+            "the_vault:blood_skeleton_t3",
+            "the_vault:blood_skeleton_t4",
+            "the_vault:blood_skeleton_t5",
+            "the_vault:blood_slime",
+            "the_vault:t1_plastic_skeleton",
+            "the_vault:t2_plastic_skeleton",
+            "the_vault:t3_plastic_skeleton",
+            "the_vault:t4_plastic_skeleton",
+            "the_vault:t1_plastic_slime",
+            "the_vault:t2_plastic_slime",
+            "the_vault:t3_plastic_slime",
+            "the_vault:t4_plastic_slime",
+            "the_vault:scarab",
+            "the_vault:swamp_zombie",
+            "the_vault:t0_cave_skeleton",
+            "the_vault:t1_cave_skeleton",
+            "the_vault:t2_cave_skeleton",
+            "the_vault:t3_cave_skeleton",
+            "the_vault:t4_cave_skeleton",
+            "the_vault:t5_cave_skeleton",
+            "the_vault:overgrown_woodman_t0",
+            "the_vault:overgrown_woodman_t1",
+            "the_vault:overgrown_woodman_t2",
+            "the_vault:levishroom"
+          ]
+        },
+        "the_vault:scavenger_mob_purple": {
+          "multiplier": 1.0,
+          "mobs": [
+            "the_vault:vault_fighter",
+            "the_vault:vault_fighter_1",
+            "the_vault:vault_fighter_2",
+            "the_vault:vault_fighter_3",
+            "the_vault:vault_fighter_4",
+            "the_vault:vault_fighter_5",
+            "the_vault:vault_fighter_6",
+            "the_vault:vault_fighter_7",
+            "the_vault:vault_fighter_8",
+            "the_vault:vault_fighter_9",
+            "minecraft:witch",
+            "auxiliaryblocks:gingerbread_man",
+            "auxiliaryblocks:gingerbread_man_small"
+          ]
+        },
+        "the_vault:scavenger_mob_green": {
+          "multiplier": 2.0,
+          "mobs": [
+            "minecraft:zombie",
+            "the_vault:t3_zombie",
+            "minecraft:drowned",
+            "the_vault:t1_drowned",
+            "the_vault:t2_drowned",
+            "the_vault:t3_drowned",
+            "minecraft:husk",
+            "the_vault:t1_husk",
+            "the_vault:t2_husk",
+            "the_vault:t3_husk",
+            "minecraft:enderman",
+            "the_vault:t1_enderman",
+            "the_vault:t2_enderman",
+            "the_vault:t3_enderman",
+            "minecraft:piglin",
+            "the_vault:t1_piglin",
+            "the_vault:t2_piglin",
+            "the_vault:t3_piglin",
+            "the_vault:deep_dark_piglin",
+            "the_vault:winterwalker_t0",
+            "the_vault:winterwalker_t1",
+            "the_vault:winterwalker_t2",
+            "the_vault:winterwalker_t3",
+            "the_vault:winterwalker_t4",
+            "the_vault:winterwalker_t5",
+            "the_vault:miner_zombie_t0",
+            "the_vault:miner_zombie_t1",
+            "the_vault:miner_zombie_t2",
+            "the_vault:miner_zombie_t3",
+            "the_vault:miner_zombie_t4",
+            "the_vault:miner_zombie_t5",
+            "the_vault:mushroom_t0",
+            "the_vault:mushroom_t1",
+            "the_vault:mushroom_t2",
+            "the_vault:mushroom_t3",
+            "the_vault:mushroom_t4",
+            "the_vault:mushroom_t5",
+            "the_vault:overgrown_zombie_t0",
+            "the_vault:overgrown_zombie_t1",
+            "the_vault:overgrown_zombie_t2",
+            "the_vault:overgrown_zombie_t3",
+            "the_vault:overgrown_zombie_t4",
+            "the_vault:overgrown_zombie_t5",
+            "rottencreatures:undead_miner",
+            "the_vault:deep_dark_zombie",
+            "the_vault:vault_yellow_gummy_soldier",
+            "the_vault:vault_green_gummy_soldier",
+            "the_vault:vault_red_gummy_soldier",
+            "the_vault:blood_horde_t1",
+            "the_vault:blood_horde_t2",
+            "the_vault:blood_horde_t3",
+            "the_vault:blood_horde_t4",
+            "the_vault:blood_horde_t5",
+            "the_vault:t1_plastic_zombie",
+            "the_vault:t2_plastic_zombie",
+            "the_vault:t3_plastic_zombie",
+            "the_vault:t4_plastic_zombie"
+          ]
+        }
+      }
+    }
+  ],
+  "levels": [
+    {
+      "level": 0,
+      "goalCount": {
+        "type": "uniform",
+        "min": 2,
+        "max": 4
+      },
+      "itemCount": {
+        "type": "uniform",
+        "min": 1,
+        "max": 4
+      }
+    },
+    {
+      "level": 10,
+      "goalCount": {
+        "type": "uniform",
+        "min": 3,
+        "max": 4
+      },
+      "itemCount": {
+        "type": "uniform",
+        "min": 1,
+        "max": 6
+      }
+    },
+    {
+      "level": 20,
+      "goalCount": {
+        "type": "uniform",
+        "min": 3,
+        "max": 4
+      },
+      "itemCount": {
+        "type": "uniform",
+        "min": 2,
+        "max": 8
+      }
+    },
+    {
+      "level": 50,
+      "goalCount": {
+        "type": "uniform",
+        "min": 4,
+        "max": 5
+      },
+      "itemCount": {
+        "type": "uniform",
+        "min": 3,
+        "max": 12
+      }
+    },
+    {
+      "level": 75,
+      "goalCount": {
+        "type": "uniform",
+        "min": 4,
+        "max": 5
+      },
+      "itemCount": {
+        "type": "uniform",
+        "min": 4,
+        "max": 16
+      }
+    }
+  ]
+}

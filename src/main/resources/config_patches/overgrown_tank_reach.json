@@ -1,0 +1,129 @@
+
+{
+  "ATTRIBUTE_OVERRIDES": {
+    "the_vault:overgrown_tank": [
+      {
+        "NAME": "the_vault:generic.reach",
+        "MIN": 2.3,
+        "MAX": 2.7,
+        "OPERATOR": "set",
+        "ROLL_CHANCE": 1.0,
+        "SCALE_PER_LEVEL": 0.0,
+        "SCALE_MAX_LEVEL": -1
+      },
+      {
+        "NAME": "the_vault:generic.crit_chance",
+        "MIN": 0.0,
+        "MAX": 0.0,
+        "OPERATOR": "set",
+        "ROLL_CHANCE": 0.8,
+        "SCALE_PER_LEVEL": 0.0,
+        "SCALE_MAX_LEVEL": -1
+      },
+      {
+        "NAME": "the_vault:generic.crit_multiplier",
+        "MIN": 0.0,
+        "MAX": 0.0,
+        "OPERATOR": "set",
+        "ROLL_CHANCE": 0.8,
+        "SCALE_PER_LEVEL": 0.0,
+        "SCALE_MAX_LEVEL": -1
+      },
+      {
+        "NAME": "minecraft:generic.attack_damage",
+        "MIN": 3.0,
+        "MAX": 5.0,
+        "OPERATOR": "set",
+        "ROLL_CHANCE": 1.0,
+        "SCALE_PER_LEVEL": 0.05,
+        "SCALE_MAX_LEVEL": -1,
+        "LEVELS": [
+          {
+            "MIN_LEVEL": 80,
+            "MIN": 3.3000000000000003,
+            "MAX": 5.5,
+            "OPERATOR": "set",
+            "ROLL_CHANCE": 1.0,
+            "SCALE_PER_LEVEL": 0.05,
+            "SCALE_MAX_LEVEL": -1
+          },
+          {
+            "MIN_LEVEL": 90,
+            "MIN": 3.5999999999999996,
+            "MAX": 6.0,
+            "OPERATOR": "set",
+            "ROLL_CHANCE": 1.0,
+            "SCALE_PER_LEVEL": 0.05,
+            "SCALE_MAX_LEVEL": -1
+          }
+        ]
+      },
+      {
+        "NAME": "minecraft:generic.max_health",
+        "MIN": 60.0,
+        "MAX": 85.0,
+        "OPERATOR": "set",
+        "ROLL_CHANCE": 1.0,
+        "SCALE_PER_LEVEL": 0.08,
+        "SCALE_MAX_LEVEL": -1,
+        "LEVELS": [
+          {
+            "MIN_LEVEL": 80,
+            "MIN": 66.0,
+            "MAX": 93.50000000000001,
+            "OPERATOR": "set",
+            "ROLL_CHANCE": 1.0,
+            "SCALE_PER_LEVEL": 0.08,
+            "SCALE_MAX_LEVEL": -1
+          },
+          {
+            "MIN_LEVEL": 90,
+            "MIN": 72.0,
+            "MAX": 102.0,
+            "OPERATOR": "set",
+            "ROLL_CHANCE": 1.0,
+            "SCALE_PER_LEVEL": 0.08,
+            "SCALE_MAX_LEVEL": -1
+          },
+          {
+            "MIN_LEVEL": 80,
+            "MIN": 79.2,
+            "MAX": 112.2,
+            "OPERATOR": "set",
+            "ROLL_CHANCE": 1.0,
+            "SCALE_PER_LEVEL": 0.08,
+            "SCALE_MAX_LEVEL": -1
+          },
+          {
+            "MIN_LEVEL": 90,
+            "MIN": 86.39999999999999,
+            "MAX": 122.39999999999999,
+            "OPERATOR": "set",
+            "ROLL_CHANCE": 1.0,
+            "SCALE_PER_LEVEL": 0.08,
+            "SCALE_MAX_LEVEL": -1
+          }
+        ]
+      },
+      {
+        "NAME": "minecraft:generic.knockback_resistance",
+        "MIN": 0.7,
+        "MAX": 1.0,
+        "OPERATOR": "set",
+        "ROLL_CHANCE": 1.0,
+        "SCALE_PER_LEVEL": 0.0,
+        "SCALE_MAX_LEVEL": -1
+      },
+      {
+        "NAME": "forge:swim_speed",
+        "MIN": 5.0,
+        "MAX": 5.0,
+        "OPERATOR": "set",
+        "ROLL_CHANCE": 1.0,
+        "SCALE_PER_LEVEL": 0.0,
+        "SCALE_MAX_LEVEL": -1
+      }
+    ]
+  },
+  "LEVEL_OVERRIDES": []
+}
