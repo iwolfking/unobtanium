@@ -10,10 +10,10 @@ import iskallia.vault.block.entity.VaultChestTileEntity;
 import net.minecraft.world.Container;
 
 
-@Mixin(value = VaultChestTileEntity.class, remap = false)
+@Mixin(value = VaultChestTileEntity.class)
 public class FixVaultChestGeneratedLootAmount
 {
-    @Redirect(method = "fillLoot", at = @At(value = "FIELD", target = "Liskallia/vault/block/entity/VaultChestTileEntity;size:I", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "fillLoot", at = @At(value = "FIELD", target = "Liskallia/vault/block/entity/VaultChestTileEntity;size:I", opcode = Opcodes.GETFIELD), remap = false)
     public int fixGeneratedLootSlots(VaultChestTileEntity instance)
     {
         // All generated vault chest inventories should be 27 items inside it.
