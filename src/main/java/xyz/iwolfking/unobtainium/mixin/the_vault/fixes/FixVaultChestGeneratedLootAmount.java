@@ -1,9 +1,3 @@
-//
-// Created by BONNe
-// Copyright - 2025
-//
-
-
 package xyz.iwolfking.unobtainium.mixin.the_vault.fixes;
 
 
