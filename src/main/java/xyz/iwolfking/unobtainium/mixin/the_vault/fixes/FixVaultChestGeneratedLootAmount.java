@@ -10,7 +10,7 @@ import iskallia.vault.block.entity.VaultChestTileEntity;
 import net.minecraft.world.Container;
 
 
-@Mixin(VaultChestTileEntity.class)
+@Mixin(value = VaultChestTileEntity.class, remap = false)
 public class FixVaultChestGeneratedLootAmount
 {
     @Redirect(method = "fillLoot", at = @At(value = "FIELD", target = "Liskallia/vault/block/entity/VaultChestTileEntity;size:I", opcode = Opcodes.GETFIELD))
