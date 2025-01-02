@@ -11,6 +11,8 @@
     "the_vault.fixes.FixFireballLevelRadius",
     "the_vault.fixes.FixTotemsInRaidRooms",
     "the_vault.fixes.FixTrappedTreasureChests",
+    "the_vault.fixes.FixVaultChestGeneratedLootAmount",
+    "the_vault.fixes.FixVaultChestMenuSize",
     "the_vault.optimizations.OptimizeBlockBlacklist",
     "the_vault.optimizations.OptimizeGearSnapshots"
   ],
