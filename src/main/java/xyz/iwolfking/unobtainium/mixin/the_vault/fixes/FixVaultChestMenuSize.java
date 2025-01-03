@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import iskallia.vault.block.VaultBarrelBlock;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.entity.VaultChestTileEntity;
 import net.minecraft.core.BlockPos;
@@ -20,6 +21,7 @@ import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import xyz.iwolfking.unobtainium.menus.VaultBarrelMenu;
 
 
 @Mixin(VaultChestBlock.class)
@@ -54,40 +56,48 @@ public class FixVaultChestMenuSize
                 {
                     if (chestEntity.canOpen(player))
                     {
+                        MenuType<ChestMenu> menuType;
+                        int rows;
+
                         switch (chestEntity.getContainerSize())
                         {
                             case 36 ->
                             {
-                                return new ChestMenu(MenuType.GENERIC_9x4,
-                                    containerId,
-                                    playerInventory,
-                                    chestEntity,
-                                    4);
+                                menuType = MenuType.GENERIC_9x4;
+                                rows = 4;
                             }
                             case 45 ->
                             {
-                                return new ChestMenu(MenuType.GENERIC_9x5,
-                                    containerId,
-                                    playerInventory,
-                                    chestEntity,
-                                    5);
+                                menuType = MenuType.GENERIC_9x5;
+                                rows = 5;
                             }
                             case 54 ->
                             {
-                                return new ChestMenu(MenuType.GENERIC_9x6,
-                                    containerId,
-                                    playerInventory,
-                                    chestEntity,
-                                    6);
+                                menuType = MenuType.GENERIC_9x6;
+                                rows = 6;
                             }
                             default ->
                             {
-                                return new ChestMenu(MenuType.GENERIC_9x3,
-                                    containerId,
-                                    playerInventory,
-                                    chestEntity,
-                                    3);
+                                menuType = MenuType.GENERIC_9x3;
+                                rows = 3;
                             }
+                        }
+
+                        if (state.getBlock() instanceof VaultBarrelBlock)
+                        {
+                            return new VaultBarrelMenu(menuType,
+                                containerId,
+                                playerInventory,
+                                chestEntity,
+                                rows);
+                        }
+                        else
+                        {
+                            return new ChestMenu(menuType,
+                                containerId,
+                                playerInventory,
+                                chestEntity,
+                                rows);
                         }
                     }
                     else
