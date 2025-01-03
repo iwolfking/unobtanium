@@ -26,16 +26,17 @@ public class FixVaultChestStepBreaking
         remap = false)
     private boolean fixOnDestroyedByPlayer(VaultChestBlock instance, @Local BlockEntity te)
     {
+        // Only Vault Chests (with loot data) should have step breaking
         return instance.hasStepBreaking() && te instanceof VaultChestTileEntity chest && chest.isVaultChest();
     }
 
 
     @Redirect(method = "playerDestroy",
         at = @At(value = "INVOKE",
-            target = "Liskallia/vault/block/VaultChestBlock;hasStepBreaking()Z"),
-        remap = false)
+            target = "Liskallia/vault/block/VaultChestBlock;hasStepBreaking()Z"))
     private boolean fixPlayerDestroy(VaultChestBlock instance, @Local(argsOnly = true) BlockEntity te)
     {
+        // Only Vault Chests (with loot data) should have step breaking
         return instance.hasStepBreaking() && te instanceof VaultChestTileEntity chest && chest.isVaultChest();
     }
 }
