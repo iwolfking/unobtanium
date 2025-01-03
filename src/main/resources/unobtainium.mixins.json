@@ -10,6 +10,8 @@
     "the_vault.fixes.FixEmpoweredChaoticFocus",
     "the_vault.fixes.FixesVaultBarrelNestingTileEntity",
     "the_vault.fixes.FixFireballLevelRadius",
+    "the_vault.fixes.FixJewelIdentificationOverwrite",
+    "the_vault.fixes.FixJewelPouchStackSize",
     "the_vault.fixes.FixTotemsInRaidRooms",
     "the_vault.fixes.FixTrappedTreasureChests",
     "the_vault.fixes.FixVaultBarrelNesting",
