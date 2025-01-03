@@ -8,9 +8,11 @@
   "mixins": [
     "the_vault.fixes.FixAxesWithAnimalPen",
     "the_vault.fixes.FixEmpoweredChaoticFocus",
+    "the_vault.fixes.FixesVaultBarrelNestingTileEntity",
     "the_vault.fixes.FixFireballLevelRadius",
     "the_vault.fixes.FixTotemsInRaidRooms",
     "the_vault.fixes.FixTrappedTreasureChests",
+    "the_vault.fixes.FixVaultBarrelNesting",
     "the_vault.fixes.FixVaultChestGeneratedLootAmount",
     "the_vault.fixes.FixVaultChestMenuSize",
     "the_vault.fixes.FixVaultChestNames",
