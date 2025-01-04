@@ -155,6 +155,9 @@ dependencies {
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5925356")
     implementation 'me.fallenbreath:conditional-mixin-forge:0.6.2'
 
+    implementation fg.deobf("curse.maven:easy-shulker-boxes-594006:3718047")
+    implementation fg.deobf("curse.maven:puzzles-lib-495476:5729908")
+
     compileOnly fg.deobf("curse.maven:ars-nouveau-401955:4543053")
 
     compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.2.0"))
