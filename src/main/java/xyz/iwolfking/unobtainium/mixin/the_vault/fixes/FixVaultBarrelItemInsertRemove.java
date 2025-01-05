@@ -1,6 +1,8 @@
 package xyz.iwolfking.unobtainium.mixin.the_vault.fixes;
 
 
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -9,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
-import fuzs.easyshulkerboxes.world.item.ContainerItemHelper;
 import iskallia.vault.block.VaultBarrelBlock;
 import iskallia.vault.init.ModBlocks;
 import net.minecraft.sounds.SoundEvents;
@@ -22,12 +23,18 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import xyz.iwolfking.unobtainium.api.helper.ContainerItemHelper;
 
 
 /**
  * This mixin is copy of fuzs.easyshulkerboxes.mixin.ItemMixin from Easy ShulkerBoxes.
  * It is adjusted so it would work with Vault Barrels.
  */
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "easyshulkerboxes")
+        }
+)
 @Mixin(value = Item.class)
 public abstract class FixVaultBarrelItemInsertRemove
 {
