@@ -30,11 +30,6 @@ import xyz.iwolfking.unobtainium.api.helper.ContainerItemHelper;
  * This mixin is copy of fuzs.easyshulkerboxes.mixin.ItemMixin from Easy ShulkerBoxes.
  * It is adjusted so it would work with Vault Barrels.
  */
-@Restriction(
-        require = {
-                @Condition(type = Condition.Type.MOD, value = "easyshulkerboxes")
-        }
-)
 @Mixin(value = Item.class)
 public abstract class FixVaultBarrelItemInsertRemove
 {
