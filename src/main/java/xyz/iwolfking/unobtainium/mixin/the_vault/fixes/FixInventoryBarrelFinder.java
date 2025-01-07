@@ -39,7 +39,7 @@ public class FixInventoryBarrelFinder
 
     @Redirect(method = "getShulkerBoxAccess",
         at = @At(value = "INVOKE",
-            target = "Lnet/minecraft/core/NonNullList;withSize(ILjava/lang/Object;)Lnet/minecraft/core/NonNullList;"))
+            target = "Lnet/minecraft/core/NonNullList;withSize(ILjava/lang/Object;)Lnet/minecraft/core/NonNullList;"), remap = true)
     private static NonNullList<ItemStack> injectBarrelSize(int size, Object value, @Local ItemStack container)
     {
         int returnSize = size;
