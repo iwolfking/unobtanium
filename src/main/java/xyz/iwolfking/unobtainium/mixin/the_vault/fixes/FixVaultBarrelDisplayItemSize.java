@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import iskallia.vault.block.render.VaultChestRenderer;
 
 
-@Mixin(value = VaultChestRenderer.class, remap = false)
+@Mixin(value = VaultChestRenderer.class)
 public class FixVaultBarrelDisplayItemSize
 {
     @Redirect(method = "renderFirstItem", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;scale(FFF)V"))
