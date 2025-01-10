@@ -1,8 +1,6 @@
 package xyz.iwolfking.unobtainium.mixin.the_vault.fixes;
 
 
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,7 +38,7 @@ public abstract class FixVaultBarrelItemInsertRemove
         Player player,
         CallbackInfoReturnable<Boolean> callbackInfo)
     {
-        if (Block.byItem(stack.getItem()) instanceof VaultBarrelBlock)
+        if (stack.getCount() == 1 && Block.byItem(stack.getItem()) instanceof VaultBarrelBlock)
         {
             boolean success = ContainerItemHelper.overrideStackedOnOther(stack,
                 ModBlocks.VAULT_CHEST_TILE_ENTITY,
@@ -66,7 +64,7 @@ public abstract class FixVaultBarrelItemInsertRemove
         SlotAccess slotAccess,
         CallbackInfoReturnable<Boolean> callbackInfo)
     {
-        if (Block.byItem(stack.getItem()) instanceof VaultBarrelBlock)
+        if (stack.getCount() == 1 && Block.byItem(stack.getItem()) instanceof VaultBarrelBlock)
         {
             boolean success = ContainerItemHelper.overrideOtherStackedOnMe(stack,
                 ModBlocks.VAULT_CHEST_TILE_ENTITY,
@@ -87,7 +85,7 @@ public abstract class FixVaultBarrelItemInsertRemove
     @Inject(method = "getTooltipImage", at = @At("HEAD"), cancellable = true)
     public void getTooltipImage(ItemStack stack, CallbackInfoReturnable<Optional<TooltipComponent>> callbackInfo)
     {
-        if (Block.byItem(stack.getItem()) instanceof VaultBarrelBlock)
+        if (stack.getCount() == 1 && Block.byItem(stack.getItem()) instanceof VaultBarrelBlock)
         {
             Optional<TooltipComponent> component = ContainerItemHelper.getTooltipImage(stack,
                 ModBlocks.VAULT_CHEST_TILE_ENTITY,
