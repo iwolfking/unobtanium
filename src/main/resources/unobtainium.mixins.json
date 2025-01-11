@@ -25,6 +25,7 @@
     "the_vault.optimizations.OptimizeGearSnapshots"
   ],
   "client": [
+    "the_vault.fixes.FixVaultBarrelDisplayItemSize"
   ],
   "injectors": {
     "defaultRequire": 1
