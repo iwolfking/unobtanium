@@ -13,6 +13,7 @@
     "the_vault.fixes.FixInventoryBarrelFinder",
     "the_vault.fixes.FixJewelIdentificationOverwrite",
     "the_vault.fixes.FixJewelPouchStackSize",
+    "the_vault.fixes.FixOfferingPillarCrash",
     "the_vault.fixes.FixRandomJewelCraftingRecipe",
     "the_vault.fixes.FixTotemsInRaidRooms",
     "the_vault.fixes.FixTrappedTreasureChests",
