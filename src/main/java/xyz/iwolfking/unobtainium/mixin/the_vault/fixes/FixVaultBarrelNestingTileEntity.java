@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 
 @Mixin(VaultChestTileEntity.class)
-public abstract class FixesVaultBarrelNestingTileEntity implements Container
+public abstract class FixVaultBarrelNestingTileEntity implements Container
 {
     @Shadow
     public abstract BlockState getBlockState();

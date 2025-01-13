@@ -7,8 +7,9 @@
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
     "the_vault.fixes.FixAxesWithAnimalPen",
+    "the_vault.fixes.FixCardDeckSyncIssues",
     "the_vault.fixes.FixEmpoweredChaoticFocus",
-    "the_vault.fixes.FixesVaultBarrelNestingTileEntity",
+    "the_vault.fixes.FixVaultBarrelNestingTileEntity",
     "the_vault.fixes.FixFireballLevelRadius",
     "the_vault.fixes.FixInventoryBarrelFinder",
     "the_vault.fixes.FixJewelIdentificationOverwrite",
