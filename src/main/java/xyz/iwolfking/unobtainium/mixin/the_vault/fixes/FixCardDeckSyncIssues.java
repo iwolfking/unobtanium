@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import iskallia.vault.container.inventory.CardDeckContainer;
@@ -44,6 +45,9 @@ public abstract class FixCardDeckSyncIssues extends SimpleContainer
         // However, it was never used to populate card deck container, which caused all issues
         // with sync and card disappearing.
 
+        // Collects all slots before overwriting them by triggering setChanged()
+        Map<Integer, ItemStack> deckSlots = new HashMap<>();
+
         for (CardPos pos : this.deck.getSlots())
         {
             int slot = pos.x + pos.y * 9;
@@ -57,9 +61,12 @@ public abstract class FixCardDeckSyncIssues extends SimpleContainer
                 if (!card.getEntries().isEmpty())
                 {
                     ItemStack cardItem = CardItem.create(card);
-                    this.setItem(slot, cardItem);
+                    deckSlots.put(slot, cardItem);
                 }
             });
         }
+
+        // Now place all cards into container.
+        deckSlots.forEach(this::setItem);
     }
 }
