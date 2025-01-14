@@ -59,4 +59,28 @@ public class FixInventoryBarrelFinder
 
         return NonNullList.withSize(returnSize, ItemStack.EMPTY);
     }
+
+
+    @Redirect(method = "lambda$getShulkerBoxAccess$17",
+        at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/core/NonNullList;withSize(ILjava/lang/Object;)Lnet/minecraft/core/NonNullList;"), remap = true)
+    private static NonNullList<ItemStack> injectBarrelSizeAgain(int size, Object value, @Local(argsOnly = true, ordinal = 0) ItemStack container)
+    {
+        int returnSize = size;
+
+        // Adjust the size of vault barrels.
+        if (container.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof VaultBarrelBlock)
+        {
+            if (container.is(ModBlocks.WOODEN_BARREL.asItem()))
+            {
+                returnSize = 36;
+            }
+            else
+            {
+                returnSize = 45;
+            }
+        }
+
+        return NonNullList.withSize(returnSize, ItemStack.EMPTY);
+    }
 }
