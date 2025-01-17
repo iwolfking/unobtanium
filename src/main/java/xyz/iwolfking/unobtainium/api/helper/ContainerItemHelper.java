@@ -98,6 +98,13 @@ public class ContainerItemHelper {
         if (newStack.isEmpty() || !itemFilter.test(newStack)) return 0;
         SimpleContainer container = loadItemContainer(stack, blockEntityType, containerRows);
         ItemStack remainingStack = container.addItem(newStack);
+
+        // This simple loop allows to add as many items into container as there is space.
+        while (!remainingStack.isEmpty() && container.canAddItem(remainingStack))
+        {
+            remainingStack = container.addItem(remainingStack);
+        }
+
         return newStack.getCount() - remainingStack.getCount();
     }
 

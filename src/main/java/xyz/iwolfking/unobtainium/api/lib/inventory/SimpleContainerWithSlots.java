@@ -1,5 +1,7 @@
 package xyz.iwolfking.unobtainium.api.lib.inventory;
 
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.SimpleContainer;
@@ -44,5 +46,27 @@ public class SimpleContainerWithSlots extends SimpleContainer {
         }
 
         return listtag;
+    }
+
+
+    @Override
+    public @NotNull ItemStack addItem(ItemStack itemStack)
+    {
+        // Prevents overstacked items to be inserted in single slot
+        if (itemStack.getCount() > itemStack.getMaxStackSize())
+        {
+            ItemStack copy = itemStack.copy();
+            copy.setCount(itemStack.getMaxStackSize());
+
+            // Try to insert normal stack size item
+            copy = super.addItem(copy);
+
+            // Reset remaining item stack size
+            itemStack.setCount(itemStack.getCount() - itemStack.getMaxStackSize() + copy.getCount());
+
+            return itemStack;
+        }
+
+        return super.addItem(itemStack);
     }
 }
