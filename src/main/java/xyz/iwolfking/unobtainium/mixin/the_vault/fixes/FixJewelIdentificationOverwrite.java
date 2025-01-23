@@ -27,7 +27,7 @@ public class FixJewelIdentificationOverwrite
     @Inject(method = "use",
         at = @At(value = "INVOKE",
             target = "Liskallia/vault/item/JewelPouchItem;getJewels(Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;",
-            ordinal = 0))
+            ordinal = 0, remap = false))
     private void dropIdentifiedJewels(Level level,
         Player player,
         InteractionHand hand,

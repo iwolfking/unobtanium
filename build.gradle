@@ -159,6 +159,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:qol-hunters-1093452:5943142")
     implementation fg.deobf("curse.maven:sophisticatedcore-618298:4913626")
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:4950560")
+    implementation fg.deobf("curse.maven:sophisticated-backpacks-vault-hunters-edition-696425:4287544")
 
     compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.2.0"))
     implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.2.0")) {

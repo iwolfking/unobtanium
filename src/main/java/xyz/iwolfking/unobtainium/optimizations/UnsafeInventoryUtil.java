@@ -1,7 +1,8 @@
 package xyz.iwolfking.unobtainium.optimizations;
 
+import iskallia.vault.block.VaultBarrelBlock;
+import iskallia.vault.init.ModBlocks;
 import iskallia.vault.integration.IntegrationCurios;
-import iskallia.vault.util.InventoryUtil;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -109,7 +110,6 @@ public class UnsafeInventoryUtil {
 
     public static List<ItemStack> findAllItems(List<ItemStack> items) {
         List<ItemStack> itemAccesses = new ArrayList<>();
-
         for (ItemStack stack : items) {
             itemAccesses.add(stack);
 
@@ -119,13 +119,14 @@ public class UnsafeInventoryUtil {
             }
         }
 
-        return new ArrayList<>(itemAccesses);
+        return itemAccesses;
     }
 
 
     private static List<ItemStack> getBotaniaBaubleBoxAccess(ItemStack container) {
-        List<ItemStack> accesses = new ArrayList<>();
-        if ("botania:bauble_box".equals(container.getItem().getRegistryName().toString()) && container.hasTag()) {
+        var regName = container.getItem().getRegistryName();
+        if (regName.getNamespace().equals("botania") && regName.getPath().equals("bauble_box") && container.hasTag()) {
+            List<ItemStack> accesses = new ArrayList<>();
             ListTag itemList = container.getOrCreateTag().getList("Items", 10);
 
             for (int slot = 0; slot < itemList.size(); slot++) {
@@ -134,15 +135,16 @@ public class UnsafeInventoryUtil {
                     accesses.add(storedItem);
                 }
             }
+            return accesses;
         }
 
-        return accesses;
+        return Collections.emptyList();
     }
 
-    private static List<ItemStack> getSupplementariesSackAccess(
-        ItemStack container) {
-        List<ItemStack> accesses = new ArrayList<>();
-        if ("supplementaries:sack".equals(container.getItem().getRegistryName().toString()) && container.hasTag()) {
+    private static List<ItemStack> getSupplementariesSackAccess(ItemStack container) {
+        var regName = container.getItem().getRegistryName();
+        if (regName.getNamespace().equals("supplementaries") && regName.getPath().equals("sack") && container.hasTag()) {
+            List<ItemStack> accesses = new ArrayList<>();
             CompoundTag tag = BlockItem.getBlockEntityData(container);
             if (tag != null) {
                 NonNullList<ItemStack> contents = NonNullList.withSize(9, ItemStack.EMPTY);
@@ -155,14 +157,16 @@ public class UnsafeInventoryUtil {
                     }
                 }
             }
+            return accesses;
         }
 
-        return accesses;
+        return Collections.emptyList();
     }
 
     private static List<ItemStack> getSupplementariesSafeAccess(ItemStack container) {
-        List<ItemStack> accesses = new ArrayList<>();
-        if ("supplementaries:safe".equals(container.getItem().getRegistryName().toString()) && container.hasTag()) {
+        var regName = container.getItem().getRegistryName();
+        if (regName.getNamespace().equals("supplementaries") && regName.getNamespace().equals("safe") && container.hasTag()) {
+            List<ItemStack> accesses = new ArrayList<>();
             CompoundTag tag = BlockItem.getBlockEntityData(container);
             if (tag != null) {
                 NonNullList<ItemStack> contents = NonNullList.withSize(27, ItemStack.EMPTY);
@@ -175,14 +179,16 @@ public class UnsafeInventoryUtil {
                     }
                 }
             }
+            return accesses;
         }
 
-        return accesses;
+        return Collections.emptyList();
     }
 
     private static List<ItemStack> getSatchelItemAccess(ItemStack container) {
-        List<ItemStack> accesses = new ArrayList<>();
-        if ("thermal:satchel".equals(container.getItem().getRegistryName().toString()) && container.hasTag()) {
+        var regName = container.getItem().getRegistryName();
+        if (regName.getNamespace().equals("thermal") && regName.getPath().equals("satchel") && container.hasTag()) {
+            List<ItemStack> accesses = new ArrayList<>();
             CompoundTag invTag = container.getOrCreateTagElement("ItemInv");
             if (invTag.contains("ItemInv", 9)) {
                 ListTag list = invTag.getList("ItemInv", 10);
@@ -194,14 +200,15 @@ public class UnsafeInventoryUtil {
                     }
                 }
             }
+            return accesses;
         }
 
-        return accesses;
+        return Collections.emptyList();
     }
 
     private static List<ItemStack> getBundleItemAccess(ItemStack container) {
-        List<ItemStack> accesses = new ArrayList<>();
         if (container.getItem() instanceof BundleItem && container.hasTag()) {
+            List<ItemStack> accesses = new ArrayList<>();
             CompoundTag tag = container.getOrCreateTag();
             ListTag itemList = tag.getList("Items", 10);
 
@@ -214,17 +221,26 @@ public class UnsafeInventoryUtil {
             }
 
             return accesses;
-        } else {
-            return accesses;
         }
+        return Collections.emptyList();
     }
 
     private static List<ItemStack> getShulkerBoxAccess(ItemStack container) {
-        List<ItemStack> accesses = new ArrayList<>();
         if (isShulkerBox(container.getItem())) {
+            List<ItemStack> accesses = new ArrayList<>();
             CompoundTag tag = BlockItem.getBlockEntityData(container);
             if (tag != null) {
-                NonNullList<ItemStack> contents = NonNullList.withSize(27, ItemStack.EMPTY);
+                int invSize = 27;
+                // BONNe barrel patch
+                if (container.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof VaultBarrelBlock) {
+                    if (container.is(ModBlocks.WOODEN_BARREL.asItem())) {
+                        invSize = 36;
+                    } else {
+                        invSize = 45;
+                    }
+                }
+
+                NonNullList<ItemStack> contents = NonNullList.withSize(invSize, ItemStack.EMPTY);
                 ContainerHelper.loadAllItems(tag, contents);
 
                 for (int slot = 0; slot < contents.size(); slot++) {
@@ -234,13 +250,14 @@ public class UnsafeInventoryUtil {
                     }
                 }
             }
+            return accesses;
         }
 
-        return accesses;
+        return Collections.emptyList();
     }
 
     private static boolean isShulkerBox(Item item) {
-        return item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock;
+        return item instanceof BlockItem blockItem && (blockItem.getBlock() instanceof ShulkerBoxBlock || blockItem.getBlock() instanceof VaultBarrelBlock);
     }
 
 
