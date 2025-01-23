@@ -1,6 +1,8 @@
 package xyz.iwolfking.unobtainium.mixin.the_vault.fixes;
 
+import iskallia.vault.block.CoinPileBlock;
 import iskallia.vault.block.TotemBlock;
+import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.core.world.storage.IZonedWorld;
 import iskallia.vault.core.world.storage.WorldZone;
 import net.minecraft.core.BlockPos;
@@ -27,7 +29,7 @@ public abstract class FixTotemsInRaidRooms {
     @Inject(method = "setBlockState", at = @At("HEAD"), cancellable = true)
     private void setBlockState(BlockPos pos, BlockState state, boolean isMoving, CallbackInfoReturnable<BlockState> ci) {
         if (!this.getLevel().isClientSide()) {
-            if(getLevel().getBlockState(pos).getBlock() instanceof TotemBlock) {
+            if(getLevel().getBlockState(pos).getBlock() instanceof TotemBlock || getLevel().getBlockState(pos).getBlock() instanceof VaultChestBlock || getLevel().getBlockState(pos).getBlock() instanceof CoinPileBlock) {
                 return;
             }
             IZonedWorld proxy = IZonedWorld.of(this.getLevel()).orElse(null);
