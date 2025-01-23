@@ -33,7 +33,8 @@ public class FixVaultChestStepBreaking
 
     @Redirect(method = "playerDestroy",
         at = @At(value = "INVOKE",
-            target = "Liskallia/vault/block/VaultChestBlock;hasStepBreaking()Z"))
+            target = "Liskallia/vault/block/VaultChestBlock;hasStepBreaking()Z", remap = false)
+        )
     private boolean fixPlayerDestroy(VaultChestBlock instance, @Local(argsOnly = true) BlockEntity te)
     {
         // Only Vault Chests (with loot data) should have step breaking

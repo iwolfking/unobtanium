@@ -7,9 +7,11 @@
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
     "the_vault.accessors.VaultChestTileEntityAccessor",
+    "sophbackpacksvh.FixBackpackCME",
     "the_vault.fixes.FixAxesWithAnimalPen",
     "the_vault.fixes.FixCardDeckSyncIssues",
     "the_vault.fixes.FixEmpoweredChaoticFocus",
+    "the_vault.fixes.FixVaultBarrelNestingTileEntity",
     "the_vault.fixes.FixFireballLevelRadius",
     "the_vault.fixes.FixHeraldTenosPhase",
     "the_vault.fixes.FixInventoryBarrelFinder",
@@ -27,10 +29,13 @@
     "the_vault.fixes.FixVaultChestNames",
     "the_vault.fixes.FixVaultChestStepBreaking",
     "the_vault.optimizations.OptimizeBlockBlacklist",
+    "the_vault.optimizations.OptimizeCollectionQuest",
     "the_vault.optimizations.OptimizeGearSnapshots"
   ],
   "client": [
-    "the_vault.fixes.FixVaultBarrelDisplayItemSize"
+    "the_vault.fixes.FixVaultBarrelDisplayItemSize",
+    "the_vault.optimizations.OptimizeClientBountyData",
+    "the_vault.optimizations.qolhunters.MixinSharedFunctions"
   ],
   "injectors": {
     "defaultRequire": 1
