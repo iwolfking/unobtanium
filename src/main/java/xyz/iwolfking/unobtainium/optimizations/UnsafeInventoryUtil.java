@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.p3pp3rf1y.sophisticatedbackpacks.api.CapabilityBackpackWrapper;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedcore.inventory.InventoryHandler;
 
 import java.util.ArrayList;
@@ -262,8 +263,12 @@ public class UnsafeInventoryUtil {
 
 
     public static List<ItemStack> getReadOnlyBackpackItemAccess(ItemStack backpack) {
-        return backpack.getCapability(
-            CapabilityBackpackWrapper.getCapabilityInstance()).map((wrapper) -> {
+        if (!(backpack.getItem() instanceof BackpackItem)) {
+            // avoid copying the item if it's not a backpack
+            return Collections.emptyList();
+        }
+        // copy is required here if we need the data on client
+        return backpack.copy().getCapability(CapabilityBackpackWrapper.getCapabilityInstance()).map((wrapper) -> {
             List<ItemStack> accesses = new ArrayList<>();
             InventoryHandler invHandler = wrapper.getInventoryHandler();
 
