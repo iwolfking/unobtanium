@@ -42,11 +42,4 @@ public class OptimizeCollectionQuest {
                 }
             });
     }
-
-    // we can run it on every tick when it's not slow anymore
-    @ModifyConstant(method = "onTick", constant = @Constant(intValue = 20))
-    private static int onTick(int original) {
-        return 1;
-    }
-
 }
