@@ -27,6 +27,7 @@ public class OptimizeCardDecks
         at = @At(value = "INVOKE", target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"))
     private Object fixNullNbtReading(Map instance, Object k, Object v, @Local(index = 4) CompoundTag entry)
     {
+        // for some reason the adapters were flipped. Position cannot be null, but cards can. 
         return instance.put(CardPos.ADAPTER.readNbt(entry.get("pos")).orElseThrow(),
             entry.contains("card") ? Card.ADAPTER.readNbt(entry.getCompound("card")).orElse(null) : null);
     }
