@@ -6,8 +6,8 @@
   "refmap": "unobtainium.refmap.json",
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
-    "the_vault.accessors.VaultChestTileEntityAccessor",
     "sophbackpacksvh.FixBackpackCME",
+    "the_vault.accessors.VaultChestTileEntityAccessor",
     "the_vault.fixes.FixAxesWithAnimalPen",
     "the_vault.fixes.FixCardDeckSyncIssues",
     "the_vault.fixes.FixEmpoweredChaoticFocus",
@@ -28,6 +28,8 @@
     "the_vault.fixes.FixVaultChestNames",
     "the_vault.fixes.FixVaultChestStepBreaking",
     "the_vault.optimizations.OptimizeBlockBlacklist",
+    "the_vault.optimizations.OptimizeCardDeckContainer",
+    "the_vault.optimizations.OptimizeCardDecks",
     "the_vault.optimizations.OptimizeCollectionQuest",
     "the_vault.optimizations.OptimizeGearSnapshots"
   ],
