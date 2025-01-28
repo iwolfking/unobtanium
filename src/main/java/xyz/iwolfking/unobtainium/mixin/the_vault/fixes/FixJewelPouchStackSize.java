@@ -15,6 +15,10 @@ import iskallia.vault.init.ModItems;
 import net.minecraft.world.item.Item;
 
 
+/**
+ * This was a feature request by HoY, to allow stack more jewel pouches in inventory. Having only one item
+ * per slot felt very limiting.
+ */
 @Mixin(ModItems.class)
 public class FixJewelPouchStackSize
 {

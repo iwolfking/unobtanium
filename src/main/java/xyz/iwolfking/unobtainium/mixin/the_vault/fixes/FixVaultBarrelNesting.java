@@ -20,6 +20,11 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 
 
+/**
+ * Vault Barrels introduced in u16 were able to be placed into shulker boxes, that were placed in other barrels and so on.
+ * This created huge nesting hierarchy issues that could end up with corrupted NBT data.
+ * This mixin injects vault barrels to have the same behaviour as shulker boxes and not be placed inside one.
+ */
 @Mixin(BlockItem.class)
 public abstract class FixVaultBarrelNesting
 {

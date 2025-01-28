@@ -20,6 +20,12 @@ import iskallia.vault.core.card.CardPos;
 import net.minecraft.nbt.CompoundTag;
 
 
+/**
+ * CardDeck NBT reading had a funny bug: it allowed for position to be null, but all cards should always exist.
+ * This is completely opposite on how it works in every place, as position is always expected to exist (and is always populated)
+ * while every place where card is checked, if checks it against null.
+ * This mixin just makes card reader work properly, where it throws error if position is null, but allow card to be null.
+ */
 @Mixin(value = CardDeck.class, remap = false)
 public class OptimizeCardDecks
 {

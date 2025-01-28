@@ -15,6 +15,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import iskallia.vault.block.render.VaultChestRenderer;
 
 
+/**
+ * Vault Barrel Items on display were set to be 0.3 in size. It felt too small, so this change makes it 0.5
+ */
 @Mixin(value = VaultChestRenderer.class)
 public class FixVaultBarrelDisplayItemSize
 {

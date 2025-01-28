@@ -13,6 +13,10 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.block.state.BlockState;
 
 
+/**
+ * Long-standing bug in Vault Hunters: chests never had correct name. It became very silly with barrel introduction.
+ * This mixin introduced proper chest names.
+ */
 @Mixin(value = VaultChestTileEntity.class)
 public class FixVaultChestNames
 {

@@ -24,6 +24,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import xyz.iwolfking.unobtainium.menus.VaultBarrelMenu;
 
 
+/**
+ * U16 replaced `[type]_chest_placeable` with `[type]_chest`. However, the menu size were not updated
+ * according to these changes, and all chests now had 27 slots, instead of their actual size.
+ * This mixin fixes it by creating menu with correct slot count (based on VaultChestTileEntity#getSize)
+ */
 @Mixin(VaultChestBlock.class)
 public class FixVaultChestMenuSize
 {
