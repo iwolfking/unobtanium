@@ -27,6 +27,7 @@
     "the_vault.fixes.FixVaultChestMenuSize",
     "the_vault.fixes.FixVaultChestNames",
     "the_vault.fixes.FixVaultChestStepBreaking",
+    "the_vault.fixes.FixVaultTimerStarting",
     "the_vault.optimizations.OptimizeBlockBlacklist",
     "the_vault.optimizations.OptimizeCardDeckContainer",
     "the_vault.optimizations.OptimizeCardDecks",
