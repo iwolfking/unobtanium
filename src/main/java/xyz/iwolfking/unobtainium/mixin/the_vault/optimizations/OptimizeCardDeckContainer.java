@@ -22,6 +22,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
 
+/**
+ * Vault Decks contained a lot of unnecessary information that are not used in any processes.
+ * This mixin removes `inventory` that is leftover thing from u15 and places `null` in deck slots,
+ * instead of having empty instances of Card objects.
+ */
 @Mixin(CardDeckContainer.class)
 public class OptimizeCardDeckContainer
 {

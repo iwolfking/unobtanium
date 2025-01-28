@@ -25,6 +25,15 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 
 
+/**
+ * Between u15 and u16 VH switched from `inventoryTag` to `CardDeck` data storing for containers.
+ * However, it was done only for some parts and not fully, which resulted in situations where
+ * reading decks from NBT provided empty data, sync deck from server to client and clicking on
+ * empty spot in creative inventory, resulted in wiping all cards, as none of these processed used
+ * inventoryTag.
+ * This mixin fixes cards sync issue, as it will completely ignore what is in inventoryTag and just
+ * use CardDeck information.
+ */
 @Mixin(CardDeckContainer.class)
 public abstract class FixCardDeckSyncIssues extends SimpleContainer
 {

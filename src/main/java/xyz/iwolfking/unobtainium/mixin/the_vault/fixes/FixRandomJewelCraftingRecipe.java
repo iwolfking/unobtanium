@@ -27,6 +27,12 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
 
+/**
+ * U16 removed ability to craft random jewels, as it was expecting for players to only find jewels.
+ * This change fixes it, by generating random jewel if `jewelAttribute` in `jewel_crafting_recipes.json`
+ * is specified as `the_vault:empty`.
+ * The recipe still requires loot table to be specified for jewels (like pouches)
+ */
 @Mixin(value = JewelCraftingRecipe.class, remap = false)
 public abstract class FixRandomJewelCraftingRecipe
 {

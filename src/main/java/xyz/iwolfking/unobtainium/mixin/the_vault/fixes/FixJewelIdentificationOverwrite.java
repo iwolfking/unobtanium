@@ -21,6 +21,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 
+/**
+ * Jewel pouch identification were bugged. If player got access with stacked jewels, it overwrote all of them
+ * with single jewel.
+ * This mixin fixes it, by identifying one pouch while remaining ones are dropped on ground.
+ */
 @Mixin(JewelPouchItem.class)
 public class FixJewelIdentificationOverwrite
 {

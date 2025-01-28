@@ -12,6 +12,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
 
+/**
+ * Vault Barrels introduced in u16 did not have any restrictions what can be placed inside them.
+ * This mixin changes it, as it forces vault barrel slots act like shulker boxes slots which prevents
+ * any items that contains items be placed inside them.
+ */
 @Mixin(VaultChestTileEntity.class)
 public abstract class FixVaultBarrelNestingTileEntity implements Container
 {

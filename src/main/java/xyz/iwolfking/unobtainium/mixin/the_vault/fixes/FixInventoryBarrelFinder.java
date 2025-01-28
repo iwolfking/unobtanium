@@ -23,6 +23,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 
+/**
+ * U16 introduced Vault Barrels that acts like shulker boxes (keeps inventory even when are picked up).
+ * However, InventoryUtil ignored barrels, so inventory inside them were not targeted by rotting and
+ * identifications (and other processes that used InventoryUtil for item searching).
+ *
+ * This mixin injects Vault Barrel processing in `shulker box` finder as they act very similar.
+ */
 @Mixin(value = InventoryUtil.class, remap = false)
 public class FixInventoryBarrelFinder
 {

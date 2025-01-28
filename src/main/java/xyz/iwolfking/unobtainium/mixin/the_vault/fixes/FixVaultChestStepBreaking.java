@@ -17,6 +17,11 @@ import iskallia.vault.block.entity.VaultChestTileEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 
+/**
+ * U16 replaced `[type]_chest_placeable` with `[type]_chest`. However, it messed with chests that had step breaking,
+ * as it did not check if chest is vault chest or player placed chest. It resulted in very bad behaviour.
+ * This mixin fixes it, as it enables step breaking only if chest is vault chest.
+ */
 @Mixin(VaultChestBlock.class)
 public class FixVaultChestStepBreaking
 {

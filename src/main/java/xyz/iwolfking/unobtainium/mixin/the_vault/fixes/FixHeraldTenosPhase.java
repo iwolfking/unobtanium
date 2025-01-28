@@ -12,6 +12,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.unobtainium.mixin.the_vault.accessors.VaultChestTileEntityAccessor;
 
 
+/**
+ * U16 replaced `[type]_chest_placeable` with `[type]_chest`. The indication if chest should be targeted as Vault Chest
+ * now only relied on `VaultChestTileEntity#vaultChest` variable value.
+ * This value was not set to the chests generated in Tenos phase, which resulted in empty chests.
+ * This mixin sets that given chest is Vault Chest so it could generate loot inside it.
+ */
 @Mixin(value = ConjurationMagicProjectileEntity.class, remap = false)
 public class FixHeraldTenosPhase {
 

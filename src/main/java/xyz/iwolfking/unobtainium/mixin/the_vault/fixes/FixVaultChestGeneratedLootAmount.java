@@ -9,13 +9,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.init.ModBlocks;
-import iskallia.vault.init.ModItems;
 import net.minecraft.world.Container;
 import net.minecraft.world.level.block.state.BlockState;
 
 
 /**
- * This mixin fixes how chests are filled. DO NOT CHANGE IT WITHOUT REASON.
+ * U16 replaced `[type]_chest_placeable` with `[type]_chest`. This meant that both, player placed or vault generated,
+ * chests had the same size in slot initialization. That size was also used for filling random slots with the generated
+ * loot, and it meant that players could not see all loot inside chests, if they opened them.
+ * This mixin fixes it, as it limits generated slot count to 27 (54 for treasure chests) and allow to fill only first
+ * 27 (54 for treasure chests) slots.
+ * DO NOT CHANGE VaultChestTileEntity#getSize as it will mess with player placed vault chests.
  */
 @Mixin(value = VaultChestTileEntity.class)
 public abstract class FixVaultChestGeneratedLootAmount
