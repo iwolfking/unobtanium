@@ -115,7 +115,7 @@ public class ActiveCardTaskHelper
      */
     private void processPartialAwards(UUID playerUUID, Vault vault)
     {
-        List<TaskEntry> taskEntries = this.entries.get(playerUUID);
+        List<TaskEntry> taskEntries = this.entries.getOrDefault(playerUUID, Collections.emptyList());
 
         if (taskEntries.isEmpty())
         {
@@ -182,7 +182,13 @@ public class ActiveCardTaskHelper
         CrateLootGeneratorAccessor lootAccessor = (CrateLootGeneratorAccessor) crateLootGenerator;
         List<ItemStack> additionalItems = lootAccessor.getAdditionalItems();
 
-        List<TaskEntry> taskEntries = this.entries.get(playerUUID);
+        List<TaskEntry> taskEntries = this.entries.getOrDefault(playerUUID, Collections.emptyList());
+
+        if (taskEntries.isEmpty())
+        {
+            // Nothing to process
+            return;
+        }
 
         taskEntries.removeIf(entry ->
         {
