@@ -7,6 +7,7 @@
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
     "sophbackpacksvh.FixBackpackCME",
+    "the_vault.accessors.CrateLootGeneratorAccessor",
     "the_vault.accessors.VaultChestTileEntityAccessor",
     "the_vault.fixes.FixAxesWithAnimalPen",
     "the_vault.fixes.FixCardDeckSyncIssues",
@@ -28,6 +29,8 @@
     "the_vault.fixes.FixVaultChestNames",
     "the_vault.fixes.FixVaultChestStepBreaking",
     "the_vault.fixes.FixVaultTimerStarting",
+    "the_vault.optimizations.InjectCardProcessorVault",
+    "the_vault.optimizations.OptimizeActiveTaskHelper",
     "the_vault.optimizations.OptimizeBlockBlacklist",
     "the_vault.optimizations.OptimizeCardDeckContainer",
     "the_vault.optimizations.OptimizeCardDecks",
