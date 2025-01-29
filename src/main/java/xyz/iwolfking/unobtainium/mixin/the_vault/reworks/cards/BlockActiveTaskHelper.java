@@ -4,7 +4,7 @@
 //
 
 
-package xyz.iwolfking.unobtainium.mixin.the_vault.optimizations;
+package xyz.iwolfking.unobtainium.mixin.the_vault.reworks.cards;
 
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,7 +21,7 @@ import net.minecraftforge.event.TickEvent;
  * any processing that is done in this class.
  */
 @Mixin(value = ActiveCardTaskHelper.class, remap = false)
-public class OptimizeActiveTaskHelper
+public class BlockActiveTaskHelper
 {
     @Inject(method = "onServerTick", at = @At("HEAD"), cancellable = true)
     private static void cancelServerTick(TickEvent.ServerTickEvent event, CallbackInfo ci)
