@@ -153,6 +153,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:5925633")
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5925356")
+    implementation fg.deobf("curse.maven:curios-309927:4418032")
     implementation 'me.fallenbreath:conditional-mixin-forge:0.6.2'
 
     compileOnly fg.deobf("curse.maven:ars-nouveau-401955:4543053")
