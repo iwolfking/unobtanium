@@ -161,8 +161,6 @@ dependencies {
     implementation fg.deobf("curse.maven:sophisticatedcore-618298:4913626")
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:4950560")
     implementation fg.deobf("curse.maven:sophisticated-backpacks-vault-hunters-edition-696425:4287544")
-    implementation fg.deobf('curse.maven:curios-309927:4985315')
-
     compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.2.0"))
     implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.2.0")) {
         jarJar.ranged(it, "[0.2.0,)")

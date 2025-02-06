@@ -49,8 +49,7 @@ public class OptimizeCardDeckContainer
 
     @Redirect(method = "setChanged",
         at = @At(value = "INVOKE",
-            target = "Liskallia/vault/item/CardItem;getCard(Lnet/minecraft/world/item/ItemStack;)Liskallia/vault/core/card/Card;"),
-        remap = false)
+            target = "Liskallia/vault/item/CardItem;getCard(Lnet/minecraft/world/item/ItemStack;)Liskallia/vault/core/card/Card;"))
     private Card ignoreAirItems(ItemStack stack)
     {
         // This will reduce memory consumption of decks, as will allow empty decks to be emtpy.
