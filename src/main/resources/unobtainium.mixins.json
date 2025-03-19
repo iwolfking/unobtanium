@@ -33,7 +33,8 @@
     "the_vault.optimizations.OptimizeBlockBlacklist",
     "the_vault.optimizations.OptimizeCollectionQuest",
     "the_vault.optimizations.OptimizeGearSnapshots",
-    "the_vault.reworks.VaultOnTeleport"
+    "the_vault.reworks.VaultOnTeleport",
+    "the_vault.fixes.FixDeckRecycling"
   ],
   "client": [
     "the_vault.fixes.FixVaultBarrelDisplayItemSize",
