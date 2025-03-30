@@ -23,7 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Mixin(value = BackpackShapeProvider.class, remap = false)
 public class FixBackpackCME {
     @Mutable @Shadow @Final private static Map<Integer, VoxelShape> SHAPES;
-
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void concurrentMapInitialization(CallbackInfo ci) {
         SHAPES = new ConcurrentHashMap<>(SHAPES);
