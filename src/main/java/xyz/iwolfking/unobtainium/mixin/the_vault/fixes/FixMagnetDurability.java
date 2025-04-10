@@ -31,8 +31,6 @@ public abstract class FixMagnetDurability {
     protected static void spawnItemParticles(Entity entity, ItemStack stack, int count) {
     }
 
-    private static final Set<String> MOD_MAGNET_WHITELIST = Set.of("the_vault", "woldsvaults", "compressium");
-
     /**
      * @author iwolfking
      * @reason Just replace the whole thing since a Redirect would be messy.
@@ -45,7 +43,7 @@ public abstract class FixMagnetDurability {
                 if(item.getItem().getOrCreateTag().getBoolean("voided")) {
                     return;
                 }
-                if (!item.getItem().is(ModItems.SOUL_SHARD) && (item.getItem().isEmpty() || MOD_MAGNET_WHITELIST.contains(item.getItem().getItem().getRegistryName().getNamespace()))) {
+                if (!item.getItem().is(ModItems.SOUL_SHARD)) {
                     stack.hurtAndBreak(1, player, (entity) -> {
                         if (!entity.isSilent()) {
                             entity.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_BREAK, entity.getSoundSource(), 0.8F, 0.8F + entity.level.random.nextFloat() * 0.4F);
