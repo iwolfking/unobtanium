@@ -37,8 +37,11 @@ public abstract class FixMagnetDurability {
     @Overwrite
     public static void onPlayerPickup(Player player, ItemEntity item) {
         if (item.getTags().contains("MagnetPulled")) {
-            System.out.println(item.getItem().getDescriptionId());
             getMagnet(player).ifPresent((stack) -> {
+                //If item was voided by void upgrade, don't take any durability
+                if(item.getItem().getOrCreateTag().getBoolean("voided")) {
+                    return;
+                }
                 if (!item.getItem().is(ModItems.SOUL_SHARD)) {
                     stack.hurtAndBreak(1, player, (entity) -> {
                         if (!entity.isSilent()) {
