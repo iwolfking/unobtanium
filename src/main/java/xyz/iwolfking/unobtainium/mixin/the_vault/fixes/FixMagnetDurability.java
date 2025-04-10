@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Magnets stupidly take durability even though the item being picked up is air, they are also not supposed to take durability picking up Soul Shards but the Magnet item itself is what is checked for this...
@@ -30,6 +31,8 @@ public abstract class FixMagnetDurability {
     protected static void spawnItemParticles(Entity entity, ItemStack stack, int count) {
     }
 
+    private static final Set<String> MOD_MAGNET_WHITELIST = Set.of("the_vault", "woldsvaults", "compressium");
+
     /**
      * @author iwolfking
      * @reason Just replace the whole thing since a Redirect would be messy.
@@ -42,7 +45,7 @@ public abstract class FixMagnetDurability {
                 if(item.getItem().getOrCreateTag().getBoolean("voided")) {
                     return;
                 }
-                if (!item.getItem().is(ModItems.SOUL_SHARD)) {
+                if (!item.getItem().is(ModItems.SOUL_SHARD) && MOD_MAGNET_WHITELIST.contains(item.getItem().getItem().getRegistryName().getNamespace())) {
                     stack.hurtAndBreak(1, player, (entity) -> {
                         if (!entity.isSilent()) {
                             entity.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_BREAK, entity.getSoundSource(), 0.8F, 0.8F + entity.level.random.nextFloat() * 0.4F);

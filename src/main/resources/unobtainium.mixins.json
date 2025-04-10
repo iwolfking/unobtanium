@@ -6,7 +6,6 @@
   "refmap": "unobtainium.refmap.json",
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
-    "sophbackpacks.MixinVoidWrapper",
     "sophbackpacksvh.FixBackpackCME",
     "the_vault.accessors.VaultChestTileEntityAccessor",
     "the_vault.fixes.FixBingoTaskAttaching",
