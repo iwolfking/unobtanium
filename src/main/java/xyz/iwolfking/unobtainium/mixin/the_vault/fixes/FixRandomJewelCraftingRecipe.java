@@ -46,7 +46,7 @@ public abstract class FixRandomJewelCraftingRecipe
         CallbackInfoReturnable<ItemStack> cir)
     {
         // If attribute is empty, use random gear roller to get a jewel based on its loot table.
-        if (this.jewelAttribute.equals(VaultMod.id("empty")))
+        if (this.jewelAttribute.equals(VaultMod.id("random")))
         {
             ItemStack stack = cir.getReturnValue();
             VaultLevelItem.doInitializeVaultLoot(stack, vaultLevel);

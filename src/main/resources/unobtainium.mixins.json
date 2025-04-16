@@ -15,6 +15,7 @@
     "the_vault.fixes.FixJewelPouchStackSize",
     "the_vault.fixes.FixMagnetDurability",
     "the_vault.fixes.FixRandomJewelCraftingRecipe",
+    "the_vault.fixes.FixSpawnersInRaidRooms",
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
     "the_vault.reworks.VaultOnTeleport"
