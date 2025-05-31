@@ -18,11 +18,11 @@
     "the_vault.fixes.FixSpawnersInRaidRooms",
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
+    "the_vault.optimizations.OptimizeClientBountyData",
     "the_vault.reworks.VaultOnTeleport"
   ],
   "client": [
-    "the_vault.fixes.FixVaultBarrelDisplayItemSize",
-    "the_vault.optimizations.qolhunters.MixinSharedFunctions"
+    "the_vault.fixes.FixVaultBarrelDisplayItemSize"
   ],
   "injectors": {
     "defaultRequire": 1
