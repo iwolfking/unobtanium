@@ -6,6 +6,8 @@
   "refmap": "unobtainium.refmap.json",
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
+    "ironfurnaces.MixinBlockIronFurnaceTileBase",
+    "ironfurnaces.MixinIronFurnacesJEIPlugin",
     "the_vault.accessors.VaultChestTileEntityAccessor",
     "the_vault.fixes.FixBingoTaskAttaching",
     "the_vault.fixes.FixDeckRecycling",
