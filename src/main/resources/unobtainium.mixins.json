@@ -13,7 +13,6 @@
     "the_vault.fixes.FixEmpoweredChaoticFocus",
     "the_vault.fixes.FixJewelIdentificationOverwrite",
     "the_vault.fixes.FixJewelPouchStackSize",
-    "the_vault.fixes.FixMagnetDurability",
     "the_vault.fixes.FixRandomJewelCraftingRecipe",
     "the_vault.fixes.FixSpawnersInRaidRooms",
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
