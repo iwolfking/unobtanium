@@ -18,7 +18,8 @@
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
     "the_vault.optimizations.OptimizeClientBountyData",
-    "the_vault.reworks.VaultOnTeleport"
+    "the_vault.reworks.VaultOnTeleport",
+    "travel_anchors.FixFakePlayerLag"
   ],
   "client": [
     "the_vault.fixes.FixVaultBarrelDisplayItemSize"
