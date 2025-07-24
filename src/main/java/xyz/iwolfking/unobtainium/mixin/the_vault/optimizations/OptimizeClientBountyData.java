@@ -43,7 +43,7 @@ public class OptimizeClientBountyData {
         }
         if (player.tickCount != unobtainium$lastLostBountyTick) {
             unobtainium$lastLostBountyTick = player.tickCount;
-            hasLostBountyInInventory = InventoryUtil.findAllItems(player).stream().anyMatch(stack -> stack.getStack().is(ModItems.LOST_BOUNTY));
+            hasLostBountyInInventory = InventoryUtil.findAllItems(player).stream().anyMatch(stack -> stack.getItem() == ModItems.LOST_BOUNTY);
         }
     }
 }
