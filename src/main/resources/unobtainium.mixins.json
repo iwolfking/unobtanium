@@ -8,6 +8,7 @@
   "mixins": [
     "ironfurnaces.MixinBlockIronFurnaceTileBase",
     "ironfurnaces.MixinIronFurnacesJEIPlugin",
+    "createaddition.CreateAdditionMemoryLeakFix",
     "flywheel.FlywheelMemoryLeakFix",
     "the_vault.accessors.VaultChestTileEntityAccessor",
     "the_vault.fixes.FixBingoTaskAttaching",
