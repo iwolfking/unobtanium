@@ -1,4 +1,4 @@
-package xyz.iwolfking.unobtainium.mixin.createaddition;
+package xyz.iwolfking.unobtainium.mixin.levelleakfixes.createaddition;
 
 import com.mrh0.createaddition.energy.network.EnergyNetworkManager;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;

@@ -1,4 +1,4 @@
-package xyz.iwolfking.unobtainium.mixin.flywheel;
+package xyz.iwolfking.unobtainium.mixin.levelleakfixes.flywheel;
 
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
