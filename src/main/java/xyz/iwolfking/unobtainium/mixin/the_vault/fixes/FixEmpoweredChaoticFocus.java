@@ -26,7 +26,7 @@ import java.util.Random;
 @Mixin(value = VaultGearModifierHelper.class, remap = false)
 public class FixEmpoweredChaoticFocus {
     @Shadow
-protected static List<Tuple<VaultGearModifier<?>, WeightedList<VaultGearTierConfig.ModifierOutcome<?>>>> getAvailableModifierConfigurationOutcomes(VaultGearData data, ItemStack stack, boolean includeOnlyModifiableModifiers) {
+    private static List<Tuple<VaultGearModifier<?>, WeightedList<VaultGearTierConfig.ModifierOutcome<?>>>> getAvailableModifierConfigurationOutcomes(VaultGearData data, ItemStack stack, boolean includeOnlyModifiableModifiers) {
     return null;
 }
 

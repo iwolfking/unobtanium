@@ -25,7 +25,7 @@ public class FixJewelPouchStackSize
     @Redirect(method = "<clinit>",
         at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/item/Item$Properties;stacksTo(I)Lnet/minecraft/world/item/Item$Properties;",
-            ordinal = 20))
+            ordinal = 19))
     private static Item.Properties redirectProperties(Item.Properties instance, int p_41488_)
     {
         // 16 would be good, as having 1 per stack makes pouches useful only for backpacks.

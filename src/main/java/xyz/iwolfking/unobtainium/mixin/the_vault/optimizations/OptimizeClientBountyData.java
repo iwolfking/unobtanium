@@ -23,27 +23,27 @@ import java.util.List;
 @Mixin(value = ClientBountyData.class, remap = false)
 public class OptimizeClientBountyData {
 
-    @Shadow private static boolean hasLostBountyInInventory;
-    @Unique private static long unobtainium$lastLostBountyTick = -1;
-
-    @Redirect(method = "onClientTick", at = @At(value = "INVOKE", target = "Liskallia/vault/util/InventoryUtil;findAllItems(Lnet/minecraft/world/entity/player/Player;)Ljava/util/List;"))
-    private static List<InventoryUtil.ItemAccess> onClientTick(Player inventoryFn) {
-        return List.of();
-    }
-
-    @Inject(method = "hasLostBountyInInventory", at = @At("HEAD"))
-    private static void hasLostBountyInInventory(CallbackInfoReturnable<Boolean> cir) {
-        unobtainium$updateLostBounty();
-    }
-
-    @Unique private static void unobtainium$updateLostBounty() {
-        LocalPlayer player = Minecraft.getInstance().player;
-        if (player == null) {
-            return;
-        }
-        if (player.tickCount != unobtainium$lastLostBountyTick) {
-            unobtainium$lastLostBountyTick = player.tickCount;
-            hasLostBountyInInventory = InventoryUtil.findAllItems(player).stream().anyMatch(stack -> stack.getItem() == ModItems.LOST_BOUNTY);
-        }
-    }
+//    @Shadow private static boolean hasLostBountyInInventory;
+//    @Unique private static long unobtainium$lastLostBountyTick = -1;
+//
+//    @Redirect(method = "onClientTick", at = @At(value = "INVOKE", target = "Liskallia/vault/util/InventoryUtil;findAllItems(Lnet/minecraft/world/entity/player/Player;)Ljava/util/List;"))
+//    private static List<InventoryUtil.ItemAccess> onClientTick(Player inventoryFn) {
+//        return List.of();
+//    }
+//
+//    @Inject(method = "hasLostBountyInInventory", at = @At("HEAD"))
+//    private static void hasLostBountyInInventory(CallbackInfoReturnable<Boolean> cir) {
+//        unobtainium$updateLostBounty();
+//    }
+//
+//    @Unique private static void unobtainium$updateLostBounty() {
+//        LocalPlayer player = Minecraft.getInstance().player;
+//        if (player == null) {
+//            return;
+//        }
+//        if (player.tickCount != unobtainium$lastLostBountyTick) {
+//            unobtainium$lastLostBountyTick = player.tickCount;
+//            hasLostBountyInInventory = InventoryUtil.findAllItems(player).stream().anyMatch(stack -> stack.getItem() == ModItems.LOST_BOUNTY);
+//        }
+//    }
 }
