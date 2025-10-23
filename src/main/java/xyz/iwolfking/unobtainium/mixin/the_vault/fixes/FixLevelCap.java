@@ -25,7 +25,7 @@ public abstract class FixLevelCap {
     private void fixLevelCapIssue(MinecraftServer server, int exp, CallbackInfo ci, @Local(ordinal = 1) int maxLevel) {
         if(this.vaultLevel >= maxLevel && !(this.vaultLevel >= 100)) {
             this.exp = 0;
-            this.vaultLevel = 0;
+            this.vaultLevel = maxLevel;
             this.sync(server);
             ci.cancel();
         }
