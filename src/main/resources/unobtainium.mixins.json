@@ -6,7 +6,6 @@
   "refmap": "unobtainium.refmap.json",
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
-    "sophbackpacksvh.FixBackpackCME",
     "the_vault.accessors.VaultChestTileEntityAccessor",
     "the_vault.fixes.FixBingoTaskAttaching",
     "the_vault.fixes.FixDeckRecycling",
@@ -19,7 +18,6 @@
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
     "the_vault.optimizations.OptimizeBackpackItemAccess",
-    "the_vault.optimizations.OptimizeClientBountyData",
     "the_vault.optimizations.OptimizeCollectionQuest",
     "the_vault.reworks.VaultOnTeleport",
     "travel_anchors.FixFakePlayerLag"
