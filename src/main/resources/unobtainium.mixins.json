@@ -26,7 +26,6 @@
     "the_vault.fixes.FixVaultTimerStarting",
     "the_vault.optimizations.OptimizeBackpackItemAccess",
     "the_vault.optimizations.OptimizeCollectionQuest",
-    "the_vault.reworks.VaultOnTeleport",
     "travel_anchors.FixFakePlayerLag"
   ],
   "client": [
