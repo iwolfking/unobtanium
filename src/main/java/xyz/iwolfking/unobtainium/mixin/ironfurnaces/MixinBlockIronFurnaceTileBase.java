@@ -83,9 +83,10 @@ public abstract class MixinBlockIronFurnaceTileBase extends TileEntityInventory 
 
     @Unique private static int unobtainium$getSmokingBurnTime(ItemStack stack) {
         if (!stack.isEmpty()) {
-            if (stack.getItem().getFoodProperties() != null) {
-                if (stack.getItem().getFoodProperties().getNutrition() > 0) {
-                    return stack.getItem().getFoodProperties().getNutrition() * 800;
+            var foodProperties = stack.getItem().getFoodProperties(stack, null);
+            if (foodProperties != null) {
+                if (foodProperties.getNutrition() > 0) {
+                    return foodProperties.getNutrition() * 800;
                 }
             }
         }
