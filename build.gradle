@@ -186,6 +186,7 @@ dependencies {
     implementation fg.deobf("curse.maven:alexs-mobs-426558:3853078")
 
     implementation fg.deobf("curse.maven:iron-furnaces-237664:4183356")
+    implementation fg.deobf("curse.maven:transmog-848032:4522562")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

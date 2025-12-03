@@ -29,7 +29,13 @@
     "travel_anchors.FixFakePlayerLag"
   ],
   "client": [
-    "the_vault.fixes.FixVaultBarrelDisplayItemSize"
+    "the_vault.fixes.FixVaultBarrelDisplayItemSize",
+    "transmog.MixinAbstractContainerScreen",
+    "transmog.MixinEntityRenderDispatcher",
+    "transmog.MixinGameRenderer",
+    "transmog.MixinRenderUtils",
+    "transmog.MixinScreen",
+    "transmog.MixinTransmogUtils"
   ],
   "injectors": {
     "defaultRequire": 1
