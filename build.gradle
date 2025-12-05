@@ -187,6 +187,11 @@ dependencies {
 
     implementation fg.deobf("curse.maven:iron-furnaces-237664:4183356")
     implementation fg.deobf("curse.maven:transmog-848032:4522562")
+    implementation fg.deobf("curse.maven:cit-reforged-910362:4739782")
+    implementation fg.deobf("curse.maven:psi-241665:4478796")
+    implementation fg.deobf("curse.maven:inventory-hud-forge-357540:5639943")
+    implementation fg.deobf("curse.maven:powah-rearchitected-633483:4525198")
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

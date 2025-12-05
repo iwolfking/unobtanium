@@ -19,7 +19,7 @@ import java.util.WeakHashMap;
 @Mixin(value = MusicRingManager.class, remap = false)
 public class MixinMusicRingManager {
     @Mutable @Shadow @Final private Map<ServerLevel, MusicRing> MUSIC_RINGS;
-    @Inject(method = "<init>", at = @At(value = "RETURN"), cancellable = true)
+    @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void removeAlloc(CallbackInfo ci){
         MUSIC_RINGS = new WeakHashMap<>();
     }

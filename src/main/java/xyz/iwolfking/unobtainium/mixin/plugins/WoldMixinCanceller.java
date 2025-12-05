@@ -25,7 +25,14 @@ public class WoldMixinCanceller implements MixinCanceller {
                 return true;
             }
         }
-
+        final String CIT_PREFIX = "shcm.shsupercm.fabric.citresewn.mixin.";
+        if (   s.equals(CIT_PREFIX + "citarmor.ItemStackMixin")
+            || s.equals(CIT_PREFIX + "citelytra.ElytraFeatureRendererMixin")
+            || s.equals(CIT_PREFIX + "citelytra.ItemStackMixin")
+            || s.equals(CIT_PREFIX + "citenchantment.ItemStackMixin")
+            || s.equals(CIT_PREFIX + "cititem.ItemStackMixin")){
+            return true;
+        }
         return false;
     }
 }
