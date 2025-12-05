@@ -10,6 +10,7 @@
     "levelleakfixes.createaddition.CreateAdditionMemoryLeakFix",
     "levelleakfixes.flywheel.FlywheelMemoryLeakFix",
     "levelleakfixes.imp.MixinMusicRingManager",
+    "levelleakfixes.powah.MixinCableNet",
     "the_vault.accessors.VaultChestTileEntityAccessor",
     "the_vault.fixes.FixBingoTaskAttaching",
     "the_vault.fixes.FixDeckRecycling",
