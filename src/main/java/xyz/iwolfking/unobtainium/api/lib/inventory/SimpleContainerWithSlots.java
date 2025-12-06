@@ -17,12 +17,12 @@ public class SimpleContainerWithSlots extends SimpleContainer {
     }
 
     @Override
-    public void fromTag(ListTag p_40108_) {
+    public void fromTag(ListTag pContainerNbt) {
         for(int i = 0; i < this.getContainerSize(); ++i) {
             this.setItem(i, ItemStack.EMPTY);
         }
-        for(int k = 0; k < p_40108_.size(); ++k) {
-            CompoundTag compoundtag = p_40108_.getCompound(k);
+        for(int k = 0; k < pContainerNbt.size(); ++k) {
+            CompoundTag compoundtag = pContainerNbt.getCompound(k);
             int j = compoundtag.getByte("Slot") & 255;
             if (j >= 0 && j < this.getContainerSize()) {
                 this.setItem(j, ItemStack.of(compoundtag));

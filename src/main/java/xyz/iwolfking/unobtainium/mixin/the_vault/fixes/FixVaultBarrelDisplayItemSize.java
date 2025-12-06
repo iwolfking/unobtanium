@@ -22,7 +22,7 @@ import iskallia.vault.block.render.VaultChestRenderer;
 public class FixVaultBarrelDisplayItemSize
 {
     @Redirect(method = "renderFirstItem", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;scale(FFF)V"))
-    private void changeDisplayItemSize(PoseStack instance, float p_85842_, float p_85843_, float p_85844_)
+    private void changeDisplayItemSize(PoseStack instance, float pX, float pY, float pZ)
     {
         // 0.3 value is very small. Make it 0.5 for easier viewing.
         instance.scale(0.5f, 0.5f, 0.5f);
