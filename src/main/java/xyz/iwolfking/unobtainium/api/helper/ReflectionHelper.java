@@ -10,13 +10,12 @@ import java.util.Map;
 public class ReflectionHelper {
     public static final MethodHandles.Lookup LOOKUP = MethodHandles.lookup();
     public static final Map<Class<?>, MethodHandles.Lookup> PRIVATE_LOOKUP = Maps.newHashMap();
+
+    @Nullable
     public static VarHandle getFieldFromClass(Class<?> clazz, String fieldName, Class<?> fieldClass, boolean isStatic) {
         VarHandle handler;
         var lookup = safeLookup(clazz);
         handler = safeVarHandler(lookup, clazz, fieldName, fieldClass, isStatic);
-        if (handler == null) {
-            throw new RuntimeException("VarHandler is null");
-        }
         return handler;
     }
     @Nullable
@@ -32,6 +31,7 @@ public class ReflectionHelper {
         PRIVATE_LOOKUP.put(clazz, lookup);
         return lookup;
     }
+
     @Nullable
     private static VarHandle safeVarHandler(MethodHandles.Lookup lookup, Class<?> clazz, String fieldName, Class<?> fieldClass, boolean isStatic) {
         VarHandle handler = null;

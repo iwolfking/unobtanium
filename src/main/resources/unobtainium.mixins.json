@@ -23,6 +23,7 @@
     "the_vault.fixes.FixSpawnersInRaidRooms",
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
+    "the_vault.optimizations.MixinPartialTile",
     "the_vault.optimizations.OptimizeCollectionQuest",
     "travel_anchors.FixFakePlayerLag"
   ],
