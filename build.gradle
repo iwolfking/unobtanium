@@ -169,6 +169,9 @@ dependencies {
     implementation fg.deobf("curse.maven:iammusicplayer-386380:5189210")
 
     implementation 'me.fallenbreath:conditional-mixin-forge:0.6.2'
+    jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {
+        jarJar.pin(it, '0.6.2')
+    }
 
     compileOnly fg.deobf("curse.maven:ars-nouveau-401955:4543053")
     compileOnly fg.deobf("curse.maven:qol-hunters-1093452:5943142")
