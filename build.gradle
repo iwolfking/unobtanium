@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 
@@ -16,6 +17,8 @@ plugins {
 }
 
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+
 
 group = mod_group_id
 version = mod_version
@@ -139,6 +142,10 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven {
+        name "ModMaven"
+        url "https://modmaven.dev"
+    }
     flatDir {
         dir 'lib'
     }
@@ -151,12 +158,20 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7102303")
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7110405")
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5925356")
     implementation fg.deobf("curse.maven:travel-anchors-413234:3741307")
     implementation fg.deobf("curse.maven:curios-309927:4418032")
     implementation fg.deobf("curse.maven:quark-243121:3919164")
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.18.2:0.6.11-107") // mem leak
+    implementation fg.deobf("curse.maven:createaddition-439890:4683727") // mem leak
+    implementation fg.deobf("curse.maven:alexs-cloud-storage-606618:3757407") // mem leak
+    implementation fg.deobf("curse.maven:iammusicplayer-386380:5189210")
+
     implementation 'me.fallenbreath:conditional-mixin-forge:0.6.2'
+    jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {
+        jarJar.pin(it, '0.6.2')
+    }
 
     compileOnly fg.deobf("curse.maven:ars-nouveau-401955:4543053")
     compileOnly fg.deobf("curse.maven:qol-hunters-1093452:5943142")
@@ -175,6 +190,14 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf("curse.maven:citadel-331936:3783096")
     implementation fg.deobf("curse.maven:alexs-mobs-426558:3853078")
+
+    implementation fg.deobf("curse.maven:iron-furnaces-237664:4183356")
+    implementation fg.deobf("curse.maven:transmog-848032:4522562")
+    implementation fg.deobf("curse.maven:cit-reforged-910362:4739782")
+    implementation fg.deobf("curse.maven:psi-241665:4478796")
+    implementation fg.deobf("curse.maven:inventory-hud-forge-357540:5639943")
+    implementation fg.deobf("curse.maven:powah-rearchitected-633483:4525198")
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

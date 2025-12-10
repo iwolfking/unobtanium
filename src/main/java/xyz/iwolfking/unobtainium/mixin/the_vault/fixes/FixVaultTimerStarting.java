@@ -35,7 +35,7 @@ public class FixVaultTimerStarting
     }
 
 
-    @Redirect(method = "lambda$tickServer$0", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;distanceToSqr(Lnet/minecraft/world/phys/Vec3;)D"))
+    @Redirect(method = "lambda$tickServer$0", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;distanceToSqr(Lnet/minecraft/world/phys/Vec3;)D", remap = true), remap = false)
     private static double fixRoomSize(ServerPlayer player, Vec3 vec3)
     {
         // calculate by ignoring Y, as vertical distance in current situation does not matter.

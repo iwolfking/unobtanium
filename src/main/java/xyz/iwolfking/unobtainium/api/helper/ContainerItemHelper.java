@@ -80,9 +80,9 @@ public class ContainerItemHelper {
     public static boolean overrideOtherStackedOnMe(ItemStack stack, @Nullable BlockEntityType<?> blockEntityType, int containerRows, ItemStack stackOnMe, Slot slot, ClickAction clickAction, Player player, SlotAccess slotAccess, Predicate<ItemStack> itemFilter, SoundEvent insertSound, SoundEvent removeSound) {
         if (clickAction != ClickAction.SECONDARY || !slot.allowModification(player)) return false;
         if (stackOnMe.isEmpty()) {
-            removeLastStack(stack, blockEntityType, containerRows).ifPresent((p_186347_) -> {
+            removeLastStack(stack, blockEntityType, containerRows).ifPresent(itemStack -> {
                 player.playSound(removeSound, 0.8F, 0.8F + player.getLevel().getRandom().nextFloat() * 0.4F);
-                slotAccess.set(p_186347_);
+                slotAccess.set(itemStack);
             });
         } else {
             int transferredCount = addStack(stack, blockEntityType, containerRows, stackOnMe, itemFilter);
