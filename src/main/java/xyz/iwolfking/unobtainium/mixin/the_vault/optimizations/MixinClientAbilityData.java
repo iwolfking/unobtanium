@@ -1,6 +1,6 @@
 package xyz.iwolfking.unobtainium.mixin.the_vault.optimizations;
 
-import iskallia.vault.client.ClientAbilityData;
+import iskallia.vault.client.data.ClientAbilityData;
 import iskallia.vault.network.message.AbilityKnownOnesMessage;
 import iskallia.vault.skill.base.TieredSkill;
 import org.spongepowered.asm.mixin.Mixin;

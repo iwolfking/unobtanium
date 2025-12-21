@@ -158,7 +158,7 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7110405")
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7354454")
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5925356")
     implementation fg.deobf("curse.maven:travel-anchors-413234:3741307")
     implementation fg.deobf("curse.maven:curios-309927:4418032")
