@@ -9,8 +9,8 @@ import xyz.iwolfking.unobtainium.fixes.VaultPosReuse;
 
 @Mixin(value = PartialTile.class, remap = false)
 public class MixinPartialTile {
-    @ModifyArg(method = {"of*"}, at = @At(value = "INVOKE", target = "Liskallia/vault/core/world/data/tile/PartialTile;<init>(Liskallia/vault/core/world/data/tile/PartialBlockState;Liskallia/vault/core/world/data/entity/PartialCompoundNbt;Lnet/minecraft/core/BlockPos;)V"))
-    private static BlockPos reusePos(BlockPos pos) {
-        return VaultPosReuse.sharedPos(pos);
-    }
+    //@ModifyArg(method = {"of*"}, at = @At(value = "INVOKE", target = "Liskallia/vault/core/world/data/tile/PartialTile;<init>(Liskallia/vault/core/world/data/tile/PartialBlockState;Liskallia/vault/core/world/data/entity/PartialCompoundNbt;Lnet/minecraft/core/BlockPos;)V"))
+    //private static BlockPos reusePos(BlockPos pos) {
+    //    return VaultPosReuse.sharedPos(pos);
+    //}
 }

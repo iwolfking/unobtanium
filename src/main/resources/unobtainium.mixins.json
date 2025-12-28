@@ -6,6 +6,7 @@
   "refmap": "unobtainium.refmap.json",
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
+    "MixinLivingEntity",
     "levelleakfixes.cloudstorage.CloudStorageMemoryLeakFix",
     "levelleakfixes.createaddition.CreateAdditionMemoryLeakFix",
     "levelleakfixes.flywheel.FlywheelMemoryLeakFix",
