@@ -198,6 +198,7 @@ dependencies {
     implementation fg.deobf("curse.maven:inventory-hud-forge-357540:5639943")
     implementation fg.deobf("curse.maven:powah-rearchitected-633483:4525198")
     implementation fg.deobf('local:taterzens:1.9.6-forge')
+    compileOnly fg.deobf("curse.maven:emojiful-284324:3732908")
 
 }
 
