@@ -199,7 +199,7 @@ dependencies {
     implementation fg.deobf("curse.maven:powah-rearchitected-633483:4525198")
     implementation fg.deobf('local:taterzens:1.9.6-forge')
     compileOnly fg.deobf("curse.maven:emojiful-284324:3732908")
-
+    compileOnly fg.deobf("curse.maven:additional-enchanted-miner-282837:7094931")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
