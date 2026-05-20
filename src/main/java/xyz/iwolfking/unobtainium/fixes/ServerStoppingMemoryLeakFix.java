@@ -35,27 +35,31 @@ public class ServerStoppingMemoryLeakFix {
 
     @SubscribeEvent
     public static void LevelUnload(WorldEvent.Unload event) {
-        removeLvlFromMap(AM_DATA_MAP, event.getWorld());
-        removeLvlFromMap(BEACHED_CACHALOT_WHALE_SPAWNER_MAP, event.getWorld());
-        removeLvlFromMap(SKY_MOB_SPAWNER_MAP, event.getWorld());
+        removeLvlFromMap(AM_DATA_MAP, event.getWorld(), "AM_DATA_MAP");
+        removeLvlFromMap(BEACHED_CACHALOT_WHALE_SPAWNER_MAP, event.getWorld(), "BEACHED_WHALE");
+        removeLvlFromMap(SKY_MOB_SPAWNER_MAP, event.getWorld(), "SKY_MOB_SPAWNER");
         removeLvlFromImpMap(event.getWorld());
     }
 
-    private static void removeLvlFromMap(VarHandle handle, LevelAccessor level) {
+    private static void removeLvlFromMap(VarHandle handle, LevelAccessor level, String name) {
         try {
-            Unobtanium.LOGGER.info("Unloading level");
-            ((Map) handle.get()).remove(level);
+            if (handle != null) {
+                Unobtanium.LOGGER.debug("Unloading level {} from {} map", level, name);
+                ((Map) handle.get()).remove(level);
+            }
         } catch (Exception e) {
-            Unobtanium.LOGGER.warn("Failed to remove level from map");
+            Unobtanium.LOGGER.warn("Failed to remove level from {} map", name);
         }
     }
 
-    private static void removeLvlFromMap(VarHandle handle, LevelAccessor level, Object obj) {
+    private static void removeLvlFromMap(VarHandle handle, LevelAccessor level, Object obj, String name) {
         try {
-            Unobtanium.LOGGER.info("Unloading level");
-            ((Map) handle.get(obj)).remove(level);
+            if (handle != null) {
+                Unobtanium.LOGGER.debug("Unloading level {} from {} map", level, name);
+                ((Map) handle.get(obj)).remove(level);
+            }
         } catch (Exception e) {
-            Unobtanium.LOGGER.warn("Failed to remove level from map");
+            Unobtanium.LOGGER.warn("Failed to remove level from {} map", name);
         }
     }
 
@@ -68,7 +72,7 @@ public class ServerStoppingMemoryLeakFix {
                     ServerStoppingMemoryLeakFix.class.getClassLoader()
                 );
                 Object mgrInstance = mgrClass.getMethod("getInstance").invoke(null);
-                removeLvlFromMap(IMP_MUSIC_RINGS_MAP, level, mgrInstance);
+                removeLvlFromMap(IMP_MUSIC_RINGS_MAP, level, mgrInstance, "IMP");
             } catch (Exception ignored) {
                 Unobtanium.LOGGER.warn("Failed to remove level from IMP map");
             }
