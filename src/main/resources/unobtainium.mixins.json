@@ -38,6 +38,7 @@
     "inventoryhud.MixinArmorStatus",
     "ironfurnaces.MixinBlockIronFurnaceTileBase",
     "ironfurnaces.MixinIronFurnacesJEIPlugin",
+    "powah.MixinWiki",
     "psi.MixinHUDHandler",
     "the_vault.fixes.FixVaultBarrelDisplayItemSize",
     "the_vault.optimizations.MixinClientAbilityData",
