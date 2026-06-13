@@ -9,4 +9,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface VirtualWorldsAccessor {
     @Accessor
     static ThreadPool getCONCURRENT_POOL() {throw new UnsupportedOperationException();}
+    @Accessor
+    static void setCONCURRENT_POOL(ThreadPool threadPool) {throw new UnsupportedOperationException();}
 }
