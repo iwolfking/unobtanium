@@ -1,4 +1,4 @@
-package xyz.iwolfking.unobtainium.mixin.the_vault.fixes;
+package xyz.iwolfking.unobtainium.mixin.ispawner;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -10,11 +10,19 @@ import iskallia.vault.world.data.ServerVaults;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "ispawner")
+        }
+)
 // disables the ispawner per-category entity cap for spawners inside vault dimensions.
 @Mixin(value = SpawnerManager.class, remap = false)
 public class VaultSpawnerFizzleMixin {
