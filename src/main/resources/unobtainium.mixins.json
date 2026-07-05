@@ -17,6 +17,7 @@
     "the_vault.accessors.VaultChestTileEntityAccessor",
     "the_vault.fixes.FixBingoTaskAttaching",
     "the_vault.fixes.FixEmpoweredChaoticFocus",
+    "the_vault.fixes.FixFakePlayerMemoryLeak",
     "the_vault.fixes.FixInfluencesMemoryLeak",
     "the_vault.fixes.FixJewelIdentificationOverwrite",
     "the_vault.fixes.FixJewelPouchStackSize",
@@ -25,8 +26,12 @@
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
     "the_vault.fixes.TieredSkillHoldPreserveMixin",
+    "the_vault.optimizations.AbilityTreeSyncDeltaMixin",
+    "the_vault.optimizations.DataObjectDeterministicOrderMixin",
+    "the_vault.optimizations.ListenerSuppressSyncMixin",
     "the_vault.optimizations.MixinPartialTile",
     "the_vault.optimizations.OptimizeCollectionQuest",
+    "the_vault.optimizations.VaultBatchSyncMixin",
     "travel_anchors.FixFakePlayerLag"
   ],
   "client": [
@@ -42,6 +47,7 @@
     "ironfurnaces.MixinIronFurnacesJEIPlugin",
     "powah.MixinWiki",
     "psi.MixinHUDHandler",
+    "the_vault.accessors.AbilityTreeAccessor",
     "the_vault.fixes.FixVaultBarrelDisplayItemSize",
     "the_vault.optimizations.MixinClientAbilityData",
     "transmog.MixinAbstractContainerScreen",
