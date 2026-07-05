@@ -25,6 +25,7 @@
     "the_vault.fixes.FixSpawnersInRaidRooms",
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
+    "the_vault.fixes.TieredSkillHoldPreserveMixin",
     "the_vault.optimizations.AbilityTreeSyncDeltaMixin",
     "the_vault.optimizations.DataObjectDeterministicOrderMixin",
     "the_vault.optimizations.ListenerSuppressSyncMixin",
