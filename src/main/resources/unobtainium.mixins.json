@@ -24,11 +24,16 @@
     "the_vault.fixes.FixSpawnersInRaidRooms",
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
+    "the_vault.optimizations.AbilityTreeSyncDeltaMixin",
+    "the_vault.optimizations.DataObjectDeterministicOrderMixin",
+    "the_vault.optimizations.ListenerSuppressSyncMixin",
     "the_vault.optimizations.MixinPartialTile",
     "the_vault.optimizations.OptimizeCollectionQuest",
+    "the_vault.optimizations.VaultBatchSyncMixin",
     "travel_anchors.FixFakePlayerLag"
   ],
   "client": [
+    "the_vault.accessors.AbilityTreeAccessor",
     "cit.citarmor.ItemStackMixin",
     "cit.citelytra.ElytraFeatureRendererMixin",
     "cit.citelytra.ItemStackMixin",
