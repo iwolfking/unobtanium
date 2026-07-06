@@ -5,14 +5,10 @@ import iskallia.vault.core.Version;
 import iskallia.vault.core.data.key.GenericFieldKey;
 import iskallia.vault.core.data.key.registry.KeyRegistry;
 import iskallia.vault.core.data.sync.context.ClientSyncContext;
-import iskallia.vault.core.net.ArrayBitBuffer;
 import iskallia.vault.core.vault.Vault;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,51 +23,80 @@ public final class ServerFieldSync {
     }
 
     public static final class State {
-        final Map<Integer, long[]> baseline = new HashMap<>();
+        long[][] baseline = new long[0][];
         final Set<UUID> synced = new HashSet<>();
 
+        private final Set<UUID> eligibleIds = new HashSet<>();
+        private final ReusableBitBuffer scratch = new ReusableBitBuffer();
+        private FriendlyByteBuf out = new FriendlyByteBuf(Unpooled.buffer());
+        private boolean[] seen = new boolean[0];
+
+        private int[] changedIdx = new int[16];
+        private long[][] changedNew = new long[16][];
+        private long[][] changedOld = new long[16][];
+        private int changedCount;
+
+        private int[] removedIdx = new int[16];
+        private int removedCount;
+
         void invalidate() {
-            this.baseline.clear();
+            this.baseline = new long[0][];
+            this.seen = new boolean[0];
             this.synced.clear();
         }
-    }
 
-    private static final class FieldSnapshot {
-        final int index;
-        final long[] bytes;
+        private void ensureIndex(int idx) {
+            if (idx >= this.baseline.length) {
+                int n = Math.max(idx + 1, Math.max(4, this.baseline.length * 2));
+                this.baseline = Arrays.copyOf(this.baseline, n);
+                this.seen = Arrays.copyOf(this.seen, n);
+            }
+        }
 
-        FieldSnapshot(int index, long[] bytes) {
-            this.index = index;
-            this.bytes = bytes;
+        private void addChanged(int idx, long[] current, long[] previous) {
+            if (this.changedCount == this.changedIdx.length) {
+                int n = this.changedCount * 2;
+                this.changedIdx = Arrays.copyOf(this.changedIdx, n);
+                this.changedNew = Arrays.copyOf(this.changedNew, n);
+                this.changedOld = Arrays.copyOf(this.changedOld, n);
+            }
+            this.changedIdx[this.changedCount] = idx;
+            this.changedNew[this.changedCount] = current;
+            this.changedOld[this.changedCount] = previous;
+            this.changedCount++;
+        }
+
+        private void addRemoved(int idx) {
+            if (this.removedCount == this.removedIdx.length) {
+                this.removedIdx = Arrays.copyOf(this.removedIdx, this.removedCount * 2);
+            }
+            this.removedIdx[this.removedCount++] = idx;
         }
     }
 
     public static void sync(Vault vault, Version version, List<ServerPlayer> eligible, State state) {
-        Set<UUID> eligibleIds = new HashSet<>();
+        state.eligibleIds.clear();
         for (ServerPlayer player : eligible) {
-            eligibleIds.add(player.getUUID());
+            state.eligibleIds.add(player.getUUID());
         }
-        state.synced.retainAll(eligibleIds);
+        state.synced.retainAll(state.eligibleIds);
 
         if (eligible.isEmpty()) {
             return;
         }
 
+        boolean anyVeteran = false;
+        for (ServerPlayer player : eligible) {
+            if (state.synced.contains(player.getUUID())) {
+                anyVeteran = true;
+                break;
+            }
+        }
+
         try {
-            List<FieldSnapshot> snapshot = serialize(vault, version, eligible.get(0).getUUID());
+            boolean anyChange = collect(vault, version, eligible.get(0).getUUID(), state);
 
-            boolean anyVeteran = false;
-            for (ServerPlayer player : eligible) {
-                if (state.synced.contains(player.getUUID())) {
-                    anyVeteran = true;
-                    break;
-                }
-            }
-
-            byte[] deltaBody = anyVeteran ? diff(snapshot, state.baseline) : null;
-            if (!anyVeteran) {
-                rebaseline(snapshot, state.baseline);
-            }
+            byte[] deltaBody = (anyVeteran && anyChange) ? writeDelta(state) : null;
 
             Packet<?> deltaPacket = null;
             Packet<?> fullPacket = null;
@@ -85,7 +110,7 @@ public final class ServerFieldSync {
                     }
                 } else {
                     if (fullPacket == null) {
-                        fullPacket = packet(version, keyframe(snapshot));
+                        fullPacket = packet(version, writeKeyframe(state));
                     }
                     player.connection.send(fullPacket);
                     state.synced.add(player.getUUID());
@@ -97,10 +122,13 @@ public final class ServerFieldSync {
         }
     }
 
-    private static List<FieldSnapshot> serialize(Vault vault, Version version, UUID sampleObserver) {
+    private static boolean collect(Vault vault, Version version, UUID sampleObserver, State state) {
         KeyRegistry fields = vault.getFields();
         ClientSyncContext ctx = new ClientSyncContext(version, sampleObserver);
-        List<FieldSnapshot> snapshot = new ArrayList<>();
+
+        Arrays.fill(state.seen, 0, state.seen.length, false);
+        state.changedCount = 0;
+        state.removedCount = 0;
 
         for (Object rawKey : fields.getKeys()) {
             GenericFieldKey key = (GenericFieldKey) rawKey;
@@ -115,72 +143,80 @@ public final class ServerFieldSync {
             if (!key.canSync(value, ctx)) {
                 continue;
             }
-            ArrayBitBuffer fieldBuf = ArrayBitBuffer.empty();
-            key.writeValue(version, fieldBuf, ctx, value);
-            snapshot.add(new FieldSnapshot(idx, fieldBuf.toLongArray()));
+
+            state.scratch.reset();
+            key.writeValue(version, state.scratch, ctx, value);
+            int used = state.scratch.usedLongs();
+
+            state.ensureIndex(idx);
+            state.seen[idx] = true;
+
+            long[] base = state.baseline[idx];
+            boolean changed = base == null || base.length != used;
+            if (!changed) {
+                long[] cur = state.scratch.backing();
+                for (int i = 0; i < used; i++) {
+                    if (cur[i] != base[i]) {
+                        changed = true;
+                        break;
+                    }
+                }
+            }
+            if (changed) {
+                long[] copy = Arrays.copyOf(state.scratch.backing(), used);
+                state.addChanged(idx, copy, base);
+                state.baseline[idx] = copy;
+            }
         }
-        return snapshot;
+
+        for (int i = 0; i < state.baseline.length; i++) {
+            if (state.baseline[i] != null && !state.seen[i]) {
+                state.addRemoved(i);
+                state.baseline[i] = null;
+            }
+        }
+
+        return state.changedCount > 0 || state.removedCount > 0;
     }
 
-    private static byte[] diff(List<FieldSnapshot> snapshot, Map<Integer, long[]> baseline) {
-        List<FieldSnapshot> changed = new ArrayList<>();
-        List<long[]> changedBase = new ArrayList<>();
-        Set<Integer> currentIdx = new HashSet<>();
-
-        for (FieldSnapshot fs : snapshot) {
-            currentIdx.add(fs.index);
-            long[] cached = baseline.get(fs.index);
-            if (cached != null && Arrays.equals(cached, fs.bytes)) {
-                continue;
-            }
-            changed.add(fs);
-            changedBase.add(cached);
-            baseline.put(fs.index, fs.bytes);
-        }
-
-        List<Integer> removed = new ArrayList<>();
-        for (Integer idx : new ArrayList<>(baseline.keySet())) {
-            if (!currentIdx.contains(idx)) {
-                removed.add(idx);
-                baseline.remove(idx);
-            }
-        }
-
-        if (changed.isEmpty() && removed.isEmpty()) {
-            return null;
-        }
-
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+    private static byte[] writeDelta(State state) {
+        FriendlyByteBuf buf = state.out;
+        buf.clear();
         buf.writeBoolean(false); // delta, not a keyframe
-        buf.writeVarInt(changed.size());
-        for (int i = 0; i < changed.size(); i++) {
-            buf.writeVarInt(changed.get(i).index);
-            LongArrayDelta.write(buf, changed.get(i).bytes, changedBase.get(i));
+        buf.writeVarInt(state.changedCount);
+        for (int i = 0; i < state.changedCount; i++) {
+            buf.writeVarInt(state.changedIdx[i]);
+            LongArrayDelta.write(buf, state.changedNew[i], state.changedOld[i]);
         }
-        buf.writeVarInt(removed.size());
-        for (int idx : removed) {
-            buf.writeVarInt(idx);
+        buf.writeVarInt(state.removedCount);
+        for (int i = 0; i < state.removedCount; i++) {
+            buf.writeVarInt(state.removedIdx[i]);
         }
         return toBytes(buf);
     }
 
-    private static byte[] keyframe(List<FieldSnapshot> snapshot) {
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+    private static byte[] writeKeyframe(State state) {
+        int count = 0;
+        for (long[] field : state.baseline) {
+            if (field != null) {
+                count++;
+            }
+        }
+
+        FriendlyByteBuf buf = state.out;
+        buf.clear();
         buf.writeBoolean(true); // keyframe -> client resets its cache first
-        buf.writeVarInt(snapshot.size());
-        for (FieldSnapshot fs : snapshot) {
-            buf.writeVarInt(fs.index);
-            LongArrayDelta.write(buf, fs.bytes, null); // null base -> whole value
+        buf.writeVarInt(count);
+        for (int i = 0; i < state.baseline.length; i++) {
+            long[] field = state.baseline[i];
+            if (field == null) {
+                continue;
+            }
+            buf.writeVarInt(i);
+            LongArrayDelta.write(buf, field, null); // null base -> whole value
         }
         buf.writeVarInt(0);
         return toBytes(buf);
-    }
-
-    private static void rebaseline(List<FieldSnapshot> snapshot, Map<Integer, long[]> baseline) {
-        baseline.clear();
-        for (FieldSnapshot fs : snapshot) {
-            baseline.put(fs.index, fs.bytes);
-        }
     }
 
     private static Packet<?> packet(Version version, byte[] body) {
