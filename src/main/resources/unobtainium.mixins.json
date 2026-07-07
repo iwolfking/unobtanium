@@ -25,6 +25,8 @@
     "the_vault.fixes.FixVaultBarrelItemInsertRemove",
     "the_vault.fixes.FixVaultTimerStarting",
     "the_vault.fixes.TieredSkillHoldPreserveMixin",
+    "the_vault.optimizations.CopiousOreDropCoalesceMixin",
+    "the_vault.optimizations.ListenerSuppressSyncMixin",
     "the_vault.optimizations.MixinPartialTile",
     "the_vault.optimizations.OptimizeCollectionQuest",
     "travel_anchors.FixFakePlayerLag"
