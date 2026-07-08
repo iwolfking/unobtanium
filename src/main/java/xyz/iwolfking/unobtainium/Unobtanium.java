@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import xyz.iwolfking.unobtainium.api.lib.tooltip.ContainerItemTooltip;
 import xyz.iwolfking.unobtainium.client.tooltip.ClientContainerItemTooltip;
 import xyz.iwolfking.unobtainium.integration.VHAPIConfigRegistration;
+import xyz.iwolfking.unobtainium.magnet.MagnetSpawnPickup;
 import xyz.iwolfking.unobtainium.stat.VaultStatFields;
 import xyz.iwolfking.unobtainium.sync.UnobtaniumNetwork;
 
@@ -33,6 +34,7 @@ public class Unobtanium {
             MinecraftForge.EVENT_BUS.addListener(VHAPIConfigRegistration::onVHAPIProcessorEnd);
         }
 
+        MinecraftForge.EVENT_BUS.register(MagnetSpawnPickup.class);
         UnobtaniumNetwork.register();
         VaultStatFields.register();
 
