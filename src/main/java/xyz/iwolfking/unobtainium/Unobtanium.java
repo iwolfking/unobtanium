@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import xyz.iwolfking.unobtainium.api.lib.tooltip.ContainerItemTooltip;
 import xyz.iwolfking.unobtainium.client.tooltip.ClientContainerItemTooltip;
 import xyz.iwolfking.unobtainium.integration.VHAPIConfigRegistration;
+import xyz.iwolfking.unobtainium.magnet.MagnetSpawnPickup;
 
 import java.util.stream.Collectors;
 
@@ -30,6 +31,8 @@ public class Unobtanium {
         if(LoadingModList.get().getModFileById("vhapi") != null) {
             MinecraftForge.EVENT_BUS.addListener(VHAPIConfigRegistration::onVHAPIProcessorEnd);
         }
+
+        MinecraftForge.EVENT_BUS.register(MagnetSpawnPickup.class);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             FMLJavaModLoadingContext.get().getModEventBus().addListener(UnobtaniumClient::onClientSetup);
