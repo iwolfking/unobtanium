@@ -32,6 +32,11 @@
     "the_vault.optimizations.MixinPartialTile",
     "the_vault.optimizations.OptimizeCollectionQuest",
     "the_vault.optimizations.VaultBatchSyncMixin",
+    "the_vault.stats.ClassicLootLogicTrapMixin",
+    "the_vault.stats.StatCollectorStatsMixin",
+    "the_vault.stats.StatTotalsMixin",
+    "the_vault.stats.VaultStatsConfigXpMixin",
+    "the_vault.stats.VestigialStatListReadMixin",
     "travel_anchors.FixFakePlayerLag"
   ],
   "client": [
@@ -49,6 +54,7 @@
     "psi.MixinHUDHandler",
     "the_vault.accessors.AbilityTreeAccessor",
     "the_vault.fixes.FixVaultBarrelDisplayItemSize",
+    "the_vault.stats.ClientVaultXpTrackerStatsMixin",
     "the_vault.optimizations.MixinClientAbilityData",
     "transmog.MixinAbstractContainerScreen",
     "transmog.MixinEntityRenderDispatcher",
