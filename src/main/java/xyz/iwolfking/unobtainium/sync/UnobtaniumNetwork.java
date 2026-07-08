@@ -12,8 +12,8 @@ public final class UnobtaniumNetwork {
 
     public static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder
         .named(Unobtanium.id("vault_sync"))
-            .clientAcceptedVersions(NetworkRegistry.acceptMissingOr(PROTOCOL))
-            .serverAcceptedVersions(PROTOCOL::equals)
+        .clientAcceptedVersions(NetworkRegistry.acceptMissingOr(PROTOCOL))
+        .serverAcceptedVersions(PROTOCOL::equals)
         .networkProtocolVersion(() -> PROTOCOL)
         .simpleChannel();
 

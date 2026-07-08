@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import xyz.iwolfking.unobtainium.api.lib.tooltip.ContainerItemTooltip;
 import xyz.iwolfking.unobtainium.client.tooltip.ClientContainerItemTooltip;
 import xyz.iwolfking.unobtainium.integration.VHAPIConfigRegistration;
+import xyz.iwolfking.unobtainium.stat.VaultStatFields;
 import xyz.iwolfking.unobtainium.sync.UnobtaniumNetwork;
 
 import java.util.stream.Collectors;
@@ -33,6 +34,7 @@ public class Unobtanium {
         }
 
         UnobtaniumNetwork.register();
+        VaultStatFields.register();
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             FMLJavaModLoadingContext.get().getModEventBus().addListener(UnobtaniumClient::onClientSetup);
