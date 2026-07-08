@@ -55,7 +55,7 @@ public final class VaultStatFields {
         if (chestIdx < size - 2 || barrelIdx < size - 2) {
             Unobtanium.LOGGER.error(
                 "VaultStatFields are NOT sorted last in StatCollector.FIELDS (size={}, chest={}, barrel={}). "
-                    + "A field now sorts after them, so existing vault stats will misread."
+                    + "A field now sorts after them, so existing vault stats will misread.",
                 size, chestIdx, barrelIdx);
         }
     }
