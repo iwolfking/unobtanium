@@ -15,6 +15,7 @@
     "quarryplus.MixinConfigCommand",
     "the_vault.VirtualWorldsAccessor",
     "the_vault.accessors.VaultChestTileEntityAccessor",
+    "the_vault.fixes.BackpackPickupCountFixMixin",
     "the_vault.fixes.FixBingoTaskAttaching",
     "the_vault.fixes.FixEmpoweredChaoticFocus",
     "the_vault.fixes.FixFakePlayerMemoryLeak",
