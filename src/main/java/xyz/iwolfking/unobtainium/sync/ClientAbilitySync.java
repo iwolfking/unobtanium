@@ -18,6 +18,10 @@ public final class ClientAbilitySync {
     private ClientAbilitySync() {
     }
 
+    public static void invalidateCache() {
+        nodeCache = null;
+    }
+
     public static void apply(byte[] body) {
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.wrappedBuffer(body));
         int kind = buf.readByte();

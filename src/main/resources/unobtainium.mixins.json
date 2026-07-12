@@ -59,7 +59,6 @@
     "the_vault.accessors.AbilityTreeAccessor",
     "the_vault.fixes.FixVaultBarrelDisplayItemSize",
     "the_vault.stats.ClientVaultXpTrackerStatsMixin",
-    "the_vault.optimizations.MixinClientAbilityData",
     "transmog.MixinAbstractContainerScreen",
     "transmog.MixinEntityRenderDispatcher",
     "transmog.MixinGameRenderer",
