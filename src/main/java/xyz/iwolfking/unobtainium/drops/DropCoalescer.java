@@ -2,13 +2,17 @@ package xyz.iwolfking.unobtainium.drops;
 
 import iskallia.vault.init.ModSounds;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -22,17 +26,24 @@ public final class DropCoalescer {
     private DropCoalescer() {
     }
 
-    public static void foldOversized(List<ItemStack> out, ItemStack stack) {
+    public static void foldOversized(List<ItemStack> out, Map<Item, List<ItemStack>> index, ItemStack stack) {
         if (stack == null || stack.isEmpty()) {
             return;
         }
-        for (ItemStack existing : out) {
-            if (!existing.isEmpty() && ItemHandlerHelper.canItemStacksStack(existing, stack)) {
+        if (!stack.isStackable()) {
+            out.add(stack.copy());
+            return;
+        }
+        List<ItemStack> bucket = index.computeIfAbsent(stack.getItem(), k -> new ArrayList<>(1));
+        for (ItemStack existing : bucket) {
+            if (ItemHandlerHelper.canItemStacksStack(existing, stack)) {
                 existing.setCount(existing.getCount() + stack.getCount());
                 return;
             }
         }
-        out.add(stack.copy());
+        ItemStack copy = stack.copy();
+        out.add(copy);
+        bucket.add(copy);
     }
 
     private static final class Session {
@@ -43,6 +54,7 @@ public final class DropCoalescer {
         int experience;
         int copiousProcs;
         ServerPlayer breaker;
+        Map<Item, List<ItemStack>> stackIndex;
 
         Session(ServerLevel level) {
             this.level = level;
@@ -93,9 +105,10 @@ public final class DropCoalescer {
         Session session = SESSION.get();
         if (session.buffer == null) {
             session.buffer = new ArrayList<>();
+            session.stackIndex = new HashMap<>();
             session.anchor = pos.immutable();
         }
-        foldOversized(session.buffer, stack);
+        foldOversized(session.buffer, session.stackIndex, stack);
         return true;
     }
 
