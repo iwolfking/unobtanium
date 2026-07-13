@@ -5,6 +5,7 @@ import iskallia.vault.core.net.ArrayBitBuffer;
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.base.SpecializedSkill;
 import iskallia.vault.skill.tree.AbilityTree;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,13 +26,19 @@ public final class ServerAbilitySync {
         long[][] nodes;
         String selectedId;
         int sinceAnchor;
+        private WeakReference<Object> client;
 
         public void invalidate() {
             this.nodes = null;
         }
+
+        boolean isNewClient(Object connection) {
+            Object last = this.client == null ? null : this.client.get();
+            return last != connection;
+        }
     }
 
-    public static byte[] buildPayload(AbilityTree tree, State state) {
+    public static byte[] buildPayload(AbilityTree tree, State state, Object connection) {
         List<Skill> skills = tree.skills;
         int n = skills.size();
 
@@ -48,7 +55,8 @@ public final class ServerAbilitySync {
 
         boolean forceFull = state.nodes == null
             || state.nodes.length != n
-            || state.sinceAnchor >= ANCHOR_INTERVAL;
+            || state.sinceAnchor >= ANCHOR_INTERVAL
+            || state.isNewClient(connection);
         if (forceFull) {
             buf.writeByte(KIND_FULL);
             ArrayBitBuffer treeBuf = ArrayBitBuffer.empty();
@@ -57,6 +65,7 @@ public final class ServerAbilitySync {
             state.nodes = current;
             state.selectedId = selectedId;
             state.sinceAnchor = 0;
+            state.client = new WeakReference<>(connection);
             return toBytes(buf);
         }
 

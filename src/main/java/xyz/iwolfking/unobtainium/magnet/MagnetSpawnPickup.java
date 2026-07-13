@@ -55,7 +55,47 @@ public final class MagnetSpawnPickup {
         }
     }
 
+    /**
+     * emits one coalesced (possibly oversized) stack: offers the whole stack to the magnet fast-pickup in a single
+     * {@code playerTouch}, then spawns whatever was not picked up, split into {@code maxStackSize} entities so no
+     * over-sized item entity ever persists in the world
+    */
+    public static void emitCoalesced(ServerLevel level, double x, double y, double z, ItemStack stack, ServerPlayer preferred) {
+        if (stack == null || stack.isEmpty()) {
+            return;
+        }
+        ItemEntity entity = new ItemEntity(level, x, y, z, stack);
+        entity.setDefaultPickUpDelay();
+        if (tryPickup(level, entity, preferred)) {
+            return; // fully consumed by a magnet
+        }
+        spawnSplit(level, x, y, z, entity.getItem());
+    }
+
+    /** spawns {@code remaining} as one or more entities, split by {@code maxStackSize}. */
+    private static void spawnSplit(ServerLevel level, double x, double y, double z, ItemStack remaining) {
+        if (remaining == null || remaining.isEmpty()) {
+            return;
+        }
+        int max = Math.max(1, remaining.getMaxStackSize());
+        while (remaining.getCount() > max) {
+            ItemStack piece = remaining.copy();
+            piece.setCount(max);
+            ItemEntity split = new ItemEntity(level, x, y, z, piece);
+            split.setDefaultPickUpDelay();
+            level.addFreshEntity(split);
+            remaining.shrink(max);
+        }
+        ItemEntity last = new ItemEntity(level, x, y, z, remaining);
+        last.setDefaultPickUpDelay();
+        level.addFreshEntity(last);
+    }
+
     public static boolean tryPickup(ServerLevel level, ItemEntity item) {
+        return tryPickup(level, item, null);
+    }
+
+    public static boolean tryPickup(ServerLevel level, ItemEntity item, ServerPlayer preferred) {
         List<Candidate> eligible = eligible(level);
         if (eligible.isEmpty()) {
             return false;
@@ -76,6 +116,13 @@ public final class MagnetSpawnPickup {
         }
         if (candidates.size() > 1) {
             candidates.sort(Comparator.comparingDouble(item::distanceToSqr));
+            if (preferred != null) {
+                int idx = candidates.indexOf(preferred);
+                if (idx > 0) {
+                    candidates.remove(idx);
+                    candidates.add(0, preferred);
+                }
+            }
         }
 
         for (ServerPlayer player : candidates) {

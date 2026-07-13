@@ -27,7 +27,7 @@ public class AbilityTreeSyncDeltaMixin {
         AbilityTree self = (AbilityTree) (Object) this;
         context.getSource().as(ServerPlayer.class).ifPresent(player -> {
             try {
-                byte[] payload = ServerAbilitySync.buildPayload(self, this.unobtainium$syncState);
+                byte[] payload = ServerAbilitySync.buildPayload(self, this.unobtainium$syncState, player.connection.connection);
                 if (payload != null) {
                     UnobtaniumNetwork.CHANNEL.sendTo(
                         new AbilitySyncMessage(payload),
