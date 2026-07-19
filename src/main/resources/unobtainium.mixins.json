@@ -41,6 +41,8 @@
     "the_vault.optimizations.ListenerSuppressSyncMixin",
     "the_vault.optimizations.MixinPartialTile",
     "the_vault.optimizations.OptimizeCollectionQuest",
+    "travel_anchors.FixFakePlayerLag",
+    "the_vault.fixes.VaultSpawnerFizzleMixin"
     "the_vault.optimizations.VaultBatchSyncMixin",
     "the_vault.optimizations.XpCoalesceCaptureMixin",
     "the_vault.stats.ClassicLootLogicTrapMixin",
