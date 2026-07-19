@@ -31,7 +31,8 @@
     "the_vault.optimizations.MagnetPopResourcePickupMixin",
     "the_vault.optimizations.MixinPartialTile",
     "the_vault.optimizations.OptimizeCollectionQuest",
-    "travel_anchors.FixFakePlayerLag"
+    "travel_anchors.FixFakePlayerLag",
+    "the_vault.fixes.VaultSpawnerFizzleMixin"
   ],
   "client": [
     "cit.citarmor.ItemStackMixin",
