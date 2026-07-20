@@ -196,6 +196,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:supplementaries-412082:4548315")
     compileOnly fg.deobf("curse.maven:ftb-library-forge-404465:8232166")
     compileOnly fg.deobf("curse.maven:vaultlootbeams-1313069:8009456")
+    compileOnly fg.deobf("curse.maven:just-enough-calculation-242223:5088848")
 
     // dev perf
     runtimeOnly fg.deobf("curse.maven:modernfix-790626:5399365")

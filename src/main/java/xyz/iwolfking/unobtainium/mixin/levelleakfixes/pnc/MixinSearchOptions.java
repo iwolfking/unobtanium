@@ -36,7 +36,7 @@ public class MixinSearchOptions {
         searchGui = null;
     }
 
-    @Redirect(method = {"populateGui", "openSearchGui"}, at = @At(value = "FIELD", target = "Lme/desht/pneumaticcraft/client/gui/pneumatic_armor/options/SearchOptions;player:Lnet/minecraft/world/entity/player/Player;"))
+    @Redirect(method = {"populateGui", "openSearchGui"}, at = @At(value = "FIELD", target = "Lme/desht/pneumaticcraft/client/gui/pneumatic_armor/options/SearchOptions;player:Lnet/minecraft/world/entity/player/Player;", opcode = Opcodes.GETFIELD))
     private Player getFreshPlayer(SearchOptions instance){
         return ClientUtils.getClientPlayer();
     }

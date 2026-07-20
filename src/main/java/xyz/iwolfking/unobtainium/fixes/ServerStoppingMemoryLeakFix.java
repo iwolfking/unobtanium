@@ -12,7 +12,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import xyz.iwolfking.unobtainium.Unobtanium;
 import xyz.iwolfking.unobtainium.api.helper.ReflectionHelper;
-import xyz.iwolfking.unobtainium.mixin.BaseScreenAccessor;
+import xyz.iwolfking.unobtainium.mixin.ftblib.BaseScreenAccessor;
 
 import java.lang.invoke.MethodType;
 import java.lang.invoke.VarHandle;
