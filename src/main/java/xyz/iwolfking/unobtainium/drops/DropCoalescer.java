@@ -1,11 +1,14 @@
 package xyz.iwolfking.unobtainium.drops;
 
+import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.init.ModSounds;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import iskallia.vault.item.DeckSocketItem;
+import iskallia.vault.item.core.DataInitializationItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -30,7 +33,7 @@ public final class DropCoalescer {
         if (stack == null || stack.isEmpty()) {
             return;
         }
-        if (!stack.isStackable()) {
+        if (!stack.isStackable() || stack.getItem() instanceof DataInitializationItem || stack.getItem() instanceof VaultGearItem) {
             out.add(stack.copy());
             return;
         }
