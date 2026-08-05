@@ -23,10 +23,12 @@ public class CardCrateItemMergeMixin {
                 continue;
             }
 
-            for (ItemStack existing : list) {
-                if (existing != null && !existing.isEmpty() && ItemHandlerHelper.canItemStacksStack(existing, stack)) {
-                    existing.setCount(existing.getCount() + stack.getCount());
-                    continue outerloop;
+            if (stack.isStackable()) {
+                for (ItemStack existing : list) {
+                    if (existing != null && !existing.isEmpty() && ItemHandlerHelper.canItemStacksStack(existing, stack)) {
+                        existing.setCount(existing.getCount() + stack.getCount());
+                        continue outerloop;
+                    }
                 }
             }
 
