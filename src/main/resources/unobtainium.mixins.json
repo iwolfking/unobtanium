@@ -49,8 +49,6 @@
     "cit.citenchantment.ItemStackMixin",
     "cit.cititem.ItemStackMixin",
     "emojiful.MixinCommandSuggestions",
-    "inventoryhud.MixinArmorRenderer",
-    "inventoryhud.MixinArmorStatus",
     "ironfurnaces.MixinBlockIronFurnaceTileBase",
     "ironfurnaces.MixinIronFurnacesJEIPlugin",
     "powah.MixinWiki",
