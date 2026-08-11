@@ -22,7 +22,7 @@ import xyz.iwolfking.unobtainium.api.lib.tooltip.ContainerItemTooltip;
 import javax.annotation.Nullable;
 
 public class ClientContainerItemTooltip implements ClientTooltipComponent {
-    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation("textures/gui/container/bundle.png");
+    public static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.parse("textures/gui/container/bundle.png");
     private static final Component HOLD_SHIFT_COMPONENT = new TranslatableComponent("item.container.tooltip.info", new TranslatableComponent("item.container.tooltip.shift").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY);
 
     private final NonNullList<ItemStack> items;

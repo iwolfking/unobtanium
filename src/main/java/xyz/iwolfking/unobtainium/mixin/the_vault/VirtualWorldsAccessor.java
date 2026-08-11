@@ -5,7 +5,7 @@ import iskallia.vault.world.data.VirtualWorlds;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(VirtualWorlds.class)
+@Mixin(value = VirtualWorlds.class, remap = false)
 public interface VirtualWorldsAccessor {
     @Accessor
     static ThreadPool getCONCURRENT_POOL() {throw new UnsupportedOperationException();}
