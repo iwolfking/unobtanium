@@ -14,6 +14,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'com.radimous.vh-addon-dev' version '0.3.6'
 }
 
 apply plugin: 'org.spongepowered.mixin'
@@ -152,32 +153,54 @@ repositories {
 }
 
 dependencies {
-    // Specify the version of Minecraft to use.
-    // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
-    // The "userdev" classifier will be requested and setup by ForgeGradle.
-    // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
-    // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
+
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7862564")
-    implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5925356")
-    implementation fg.deobf("curse.maven:travel-anchors-413234:3741307")
+
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7952001")
+    implementation fg.deobf("curse.maven:vault-hunters-api-1118899:8571300")
+
+    // vh deps
     implementation fg.deobf("curse.maven:curios-309927:4418032")
-    implementation fg.deobf("curse.maven:quark-243121:3919164")
-    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.18.2:0.6.11-107") // mem leak
-    implementation fg.deobf("curse.maven:createaddition-439890:4683727") // mem leak
-    implementation fg.deobf("curse.maven:alexs-cloud-storage-606618:3757407") // mem leak
-    implementation fg.deobf("curse.maven:iammusicplayer-386380:5189210")
+    implementation fg.deobf("curse.maven:quark-243121:3840125")
+    implementation fg.deobf("curse.maven:autoreglib-250363:3642382")
+    implementation fg.deobf("curse.maven:geckolib-388172:4181370")
+    implementation fg.deobf("curse.maven:sophisticatedcore-618298:4913626")
+    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:4950560")
+    implementation fg.deobf("curse.maven:sophisticated-backpacks-vault-hunters-edition-696425:4287544")
+
+    // compat
+    compileOnly fg.deobf("curse.maven:ars-nouveau-401955:4543053")
+    compileOnly fg.deobf('local:taterzens:1.9.6-forge')
+    compileOnly fg.deobf("curse.maven:additional-enchanted-miner-282837:7094931")
+
+    // perf
+    compileOnly fg.deobf("curse.maven:travel-anchors-413234:3741307")
+    compileOnly fg.deobf("curse.maven:iron-furnaces-237664:4183356")
+    compileOnly fg.deobf("curse.maven:transmog-848032:4522562")
+    compileOnly fg.deobf("curse.maven:cit-reforged-910362:4739782")
+    compileOnly fg.deobf("curse.maven:psi-241665:4478796")
+    compileOnly fg.deobf("curse.maven:emojiful-284324:3732908")
+    compileOnly fg.deobf("curse.maven:ispawner-533792:5925639")
+
+    // leaks
+    compileOnly fg.deobf("curse.maven:alexs-mobs-426558:3853078")
+    compileOnly fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.18.2:0.6.11-107")
+    compileOnly fg.deobf("curse.maven:createaddition-439890:4683727")
+    compileOnly fg.deobf("curse.maven:alexs-cloud-storage-606618:3757407")
+    compileOnly fg.deobf("curse.maven:iammusicplayer-386380:5189210")
+    compileOnly fg.deobf("curse.maven:powah-rearchitected-633483:4525198")
+
+    // dev perf
+    runtimeOnly fg.deobf("curse.maven:modernfix-790626:5399365")
+    runtimeOnly fg.deobf("curse.maven:lazy-dfu-forge-460819:3544496")
+
+    runtimeOnly fg.deobf("curse.maven:umixiner-1614965:8456869")
 
     implementation 'me.fallenbreath:conditional-mixin-forge:0.6.2'
     jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {
         jarJar.pin(it, '0.6.2')
     }
 
-    compileOnly fg.deobf("curse.maven:ars-nouveau-401955:4543053")
-    compileOnly fg.deobf("curse.maven:qol-hunters-1093452:5943142")
-    implementation fg.deobf("curse.maven:sophisticatedcore-618298:4913626")
-    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:4950560")
-    implementation fg.deobf("curse.maven:sophisticated-backpacks-vault-hunters-edition-696425:4287544")
     compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.2.0"))
     implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.2.0")) {
         jarJar.ranged(it, "[0.2.0,)")
@@ -188,19 +211,6 @@ dependencies {
         jarJar.ranged(it, "[0.4.1,)")
     }
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation fg.deobf("curse.maven:citadel-331936:3783096")
-    implementation fg.deobf("curse.maven:alexs-mobs-426558:3853078")
-
-    implementation fg.deobf("curse.maven:iron-furnaces-237664:4183356")
-    implementation fg.deobf("curse.maven:transmog-848032:4522562")
-    implementation fg.deobf("curse.maven:cit-reforged-910362:4739782")
-    implementation fg.deobf("curse.maven:psi-241665:4478796")
-    implementation fg.deobf("curse.maven:inventory-hud-forge-357540:5639943")
-    implementation fg.deobf("curse.maven:powah-rearchitected-633483:4525198")
-    implementation fg.deobf('local:taterzens:1.9.6-forge')
-    compileOnly fg.deobf("curse.maven:emojiful-284324:3732908")
-    compileOnly fg.deobf("curse.maven:additional-enchanted-miner-282837:7094931")
-    compileOnly fg.deobf('local:ispawner:1.1.9-forge')
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(HunterAbility.class)
+@Mixin(value = HunterAbility.class, remap = false)
 public abstract class HunterRefreshMixin {
 
     @Shadow public abstract double getRadius(Entity attacker);
@@ -32,7 +32,7 @@ public abstract class HunterRefreshMixin {
 
     private static final Map<UUID, HunterSession> unobtainium$sessions = new ConcurrentHashMap<>();
 
-    @Inject(method = "doAction", at = @At("HEAD"), cancellable = true, remap = false)
+    @Inject(method = "doAction", at = @At("HEAD"), cancellable = true)
     private void unobtainium$coalesceReveal(SkillContext context, CallbackInfoReturnable<Ability.ActionResult> cir) {
         ServerPlayer player = context.getSource().as(ServerPlayer.class).orElse(null);
         if (player == null || !(player.getCommandSenderWorld() instanceof ServerLevel) || ServerVaults.get(player.level).isEmpty()) {
