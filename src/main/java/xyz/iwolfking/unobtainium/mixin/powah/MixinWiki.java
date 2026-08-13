@@ -34,7 +34,11 @@ public class MixinWiki {
     @Shadow @Final public static Map<String, Wiki> WIKIS;
 
     // from vhclientoptimize
-    @Overwrite
+    /**
+     * @author
+     * @reason optimize wiki loading
+     */
+    @Overwrite @SuppressWarnings("target")
     public static void lambda$static$5(RecipeManager recipeManager) {
         StopWatch watch = StopWatch.createStarted();
         Powah.LOGGER.info(MARKER, "Started wikis recipes collecting...");

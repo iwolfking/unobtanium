@@ -28,7 +28,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public final class MagnetSpawnPickup {
 
-    private static final ResourceLocation ENDERGIZED_ATTRIBUTE = new ResourceLocation("the_vault", "endergized");
+    private static final ResourceLocation ENDERGIZED_ATTRIBUTE = ResourceLocation.fromNamespaceAndPath("the_vault", "endergized");
 
     private static long cacheTick = Long.MIN_VALUE;
     private static ResourceKey<Level> cacheDim;

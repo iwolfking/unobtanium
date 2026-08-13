@@ -43,7 +43,7 @@ public class Unobtanium {
 
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation("unobtanium", path);
+        return ResourceLocation.fromNamespaceAndPath("unobtanium", path);
     }
 
     @Mod.EventBusSubscriber(modid = "unobtanium", bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
