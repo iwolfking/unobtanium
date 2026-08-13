@@ -47,7 +47,7 @@ public final class MagnetSpawnPickup {
         if (!(event.getEntity() instanceof ItemEntity item)) {
             return;
         }
-        if (item.isRemoved() || item.getItem().isEmpty() || item.getTags().contains(MagnetItem.BLACKLIST)) {
+        if (item.isRemoved() || item.getItem().isEmpty() || item.getTags().contains(MagnetItem.BLACKLIST) || item.getThrower() != null) {
             return;
         }
         if (tryPickup((ServerLevel) event.getWorld(), item)) {
@@ -195,13 +195,9 @@ public final class MagnetSpawnPickup {
 
     private static boolean allowsPickup(ItemEntity item, Player player) {
         UUID thrower = item.getThrower();
-        if (thrower != null && !thrower.equals(player.getUUID())) {
-            for (Player other : player.getLevel().players()) {
-                if (!other.getUUID().equals(player.getUUID())
-                        && other.getBoundingBox().inflate(1.0).intersects(item.getBoundingBox())) {
-                    return false;
-                }
-            }
+        if (thrower != null) {
+            // Do not instantly pick up items thrown/spawned by any player
+            return false;
         }
         return true;
     }
