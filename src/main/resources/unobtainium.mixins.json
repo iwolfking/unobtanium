@@ -13,7 +13,6 @@
     "ispawner.MixinGenericSpawnEggItem",
     "ispawner.MixinSpawnerBlockRenderer",
     "ispawner.VaultSpawnerFizzleMixin",
-    "levelleakfixes.MixinItemStack",
     "levelleakfixes.cloudstorage.CloudStorageMemoryLeakFix",
     "levelleakfixes.createaddition.CreateAdditionMemoryLeakFix",
     "levelleakfixes.flywheel.FlywheelMemoryLeakFix",
