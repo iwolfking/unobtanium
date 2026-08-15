@@ -6,6 +6,7 @@
   "refmap": "unobtainium.refmap.json",
   "plugin": "xyz.iwolfking.unobtainium.mixin.plugins.WoldMixinPlugin",
   "mixins": [
+    "MixinItemEntity",
     "MixinLivingEntity",
     "ars.MixinManaCapEvents",
     "ftblib.BaseScreenAccessor",
