@@ -181,6 +181,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:psi-241665:4478796")
     compileOnly fg.deobf("curse.maven:emojiful-284324:3732908")
     compileOnly fg.deobf("curse.maven:ispawner-533792:5925639")
+    compileOnly fg.deobf("curse.maven:architectury-api-419699:4521465")
 
     // leaks
     compileOnly fg.deobf("curse.maven:alexs-mobs-426558:3853078")
@@ -189,6 +190,13 @@ dependencies {
     compileOnly fg.deobf("curse.maven:alexs-cloud-storage-606618:3757407")
     compileOnly fg.deobf("curse.maven:iammusicplayer-386380:5189210")
     compileOnly fg.deobf("curse.maven:powah-rearchitected-633483:4525198")
+    compileOnly fg.deobf("curse.maven:easy-villagers-400514:3887794")
+    compileOnly fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:4922258")
+    compileOnly fg.deobf("curse.maven:patchouli-306770:3846086") // pnc dep
+    compileOnly fg.deobf("curse.maven:supplementaries-412082:4548315")
+    compileOnly fg.deobf("curse.maven:ftb-library-forge-404465:8232166")
+    compileOnly fg.deobf("curse.maven:vaultlootbeams-1313069:8009456")
+    compileOnly fg.deobf("curse.maven:just-enough-calculation-242223:5088848")
 
     // dev perf
     runtimeOnly fg.deobf("curse.maven:modernfix-790626:5399365")
@@ -253,3 +261,17 @@ tasks.named('jar', Jar).configure {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
+
+tasks.jar.archiveClassifier.set('slim')
+tasks.jarJar.archiveClassifier.set('')
+
+tasks.register("deleteSlimJar") {
+    dependsOn tasks.jar
+    doLast {
+        def slimJarFile = tasks.jar.archiveFile.get().asFile
+        if (slimJarFile.exists()) {
+            slimJarFile.delete()
+        }
+    }
+}
+tasks.jarJar.finalizedBy(tasks.deleteSlimJar)
