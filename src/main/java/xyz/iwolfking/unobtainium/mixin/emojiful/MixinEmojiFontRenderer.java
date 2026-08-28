@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
                 @Condition(type = Condition.Type.MOD, value = "emojiful")
         }
 )
-@Mixin(value = EmojiFontRenderer.class, remap = false)
+@Mixin(value = EmojiFontRenderer.class)
 public class MixinEmojiFontRenderer {
     @Redirect(method = {
             "width(Ljava/lang/String;)I",
