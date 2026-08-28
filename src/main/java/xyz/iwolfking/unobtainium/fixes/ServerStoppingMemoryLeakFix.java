@@ -51,11 +51,11 @@ public class ServerStoppingMemoryLeakFix {
         removeLvlFromMap(BEACHED_CACHALOT_WHALE_SPAWNER_MAP, event.getWorld(), "BEACHED_WHALE");
         removeLvlFromMap(SKY_MOB_SPAWNER_MAP, event.getWorld(), "SKY_MOB_SPAWNER");
         removeLvlFromImpMap(event.getWorld());
-        clearEvCache();
         if (event.getWorld().isClientSide()) {
             if (ModList.get().isLoaded("ftblibrary")) {
                 FTB.clear();
             }
+            clearEvClientCache();
         }
         if (LOOT_BEAMS_CACHE != null) {
             ((Map) LOOT_BEAMS_CACHE.get()).clear();
@@ -107,7 +107,7 @@ public class ServerStoppingMemoryLeakFix {
         }
     }
 
-    private static void clearEvCache() {
+    private static void clearEvClientCache() {
         if (!ModList.get().isLoaded("easy_villagers")) return;
         Object field = null;
         try {
