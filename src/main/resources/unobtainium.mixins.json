@@ -55,6 +55,7 @@
     "cit.citenchantment.ItemStackMixin",
     "cit.cititem.ItemStackMixin",
     "emojiful.MixinCommandSuggestions",
+    "emojiful.MixinEmojiFontRenderer",
     "ironfurnaces.MixinBlockIronFurnaceTileBase",
     "ironfurnaces.MixinIronFurnacesJEIPlugin",
     "ispawner.MixinGenericSpawnEggItem",
