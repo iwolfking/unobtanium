@@ -30,6 +30,8 @@ public final class MagnetSpawnPickup {
 
     private static final ResourceLocation ENDERGIZED_ATTRIBUTE = ResourceLocation.fromNamespaceAndPath("the_vault", "endergized");
 
+    private static final ThreadLocal<Boolean> IS_PROCESSING_PICKUP = ThreadLocal.withInitial(() -> false);
+
     private static long cacheTick = Long.MIN_VALUE;
     private static ResourceKey<Level> cacheDim;
     private static List<Candidate> cache = List.of();
@@ -96,6 +98,10 @@ public final class MagnetSpawnPickup {
     }
 
     public static boolean tryPickup(ServerLevel level, ItemEntity item, ServerPlayer preferred) {
+        if (IS_PROCESSING_PICKUP.get()) {
+            return false;
+        }
+
         List<Candidate> eligible = eligible(level);
         if (eligible.isEmpty()) {
             return false;
@@ -125,16 +131,21 @@ public final class MagnetSpawnPickup {
             }
         }
 
-        for (ServerPlayer player : candidates) {
-            if (!allowsPickup(item, player)) {
-                continue;
+        IS_PROCESSING_PICKUP.set(true);
+        try {
+            for (ServerPlayer player : candidates) {
+                if (!allowsPickup(item, player)) {
+                    continue;
+                }
+                item.setNoPickUpDelay();
+                item.getTags().add(MagnetItem.PULLED);
+                item.playerTouch(player);
+                if (item.isRemoved() || item.getItem().isEmpty()) {
+                    return true;
+                }
             }
-            item.setNoPickUpDelay();
-            item.getTags().add(MagnetItem.PULLED);
-            item.playerTouch(player);
-            if (item.isRemoved() || item.getItem().isEmpty()) {
-                return true;
-            }
+        } finally {
+            IS_PROCESSING_PICKUP.set(false);
         }
         return false;
     }
@@ -196,7 +207,6 @@ public final class MagnetSpawnPickup {
     private static boolean allowsPickup(ItemEntity item, Player player) {
         UUID thrower = item.getThrower();
         if (thrower != null) {
-            // Do not instantly pick up items thrown/spawned by any player
             return false;
         }
         return true;

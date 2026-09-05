@@ -148,7 +148,7 @@ repositories {
         url "https://modmaven.dev"
     }
     flatDir {
-        dir 'lib'
+        dir 'libs'
     }
 }
 
