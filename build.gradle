@@ -156,7 +156,7 @@ dependencies {
 
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7952001")
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:9761357")
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:8571300")
 
     // vh deps
@@ -172,6 +172,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:ars-nouveau-401955:4543053")
     compileOnly fg.deobf('local:taterzens:1.9.6-forge')
     compileOnly fg.deobf("curse.maven:additional-enchanted-miner-282837:7094931")
+    implementation fg.deobf("curse.maven:neruina-851046:5666527")
 
     // perf
     compileOnly fg.deobf("curse.maven:travel-anchors-413234:3741307")
@@ -203,6 +204,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:lazy-dfu-forge-460819:3544496")
 
     runtimeOnly fg.deobf("curse.maven:umixiner-1614965:8456869")
+
 
     implementation 'me.fallenbreath:conditional-mixin-forge:0.6.2'
     jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {

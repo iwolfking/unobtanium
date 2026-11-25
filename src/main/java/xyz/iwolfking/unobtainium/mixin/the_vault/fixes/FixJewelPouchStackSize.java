@@ -33,6 +33,6 @@ public class FixJewelPouchStackSize
     private static Item.Properties redirectProperties(Item.Properties instance, int pMaxStackSize)
     {
         // 16 would be good, as having 1 per stack makes pouches useful only for backpacks.
-        return instance.stacksTo(16);
+        return instance.stacksTo(64);
     }
 }
